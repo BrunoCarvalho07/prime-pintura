@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR" x-data="ppApp()" :data-theme="theme" @keydown.escape.window="closeMenu()">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- ===================== Google Analytics (GA4) ===================== -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQV42GDEM2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CQV42GDEM2');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- ===================== Alpine.js ===================== -->
+  <!-- Usado só para o tema claro/escuro e o menu mobile — interações simples
+       de estado, que ficam mais legíveis como diretivas no HTML do que como
+       addEventListener espalhado no JS. O resto do site (canvas do Hero,
+       parallax dos vídeos, lightbox, drag do carrossel) continua em JS puro
+       de propósito: são loops de scroll/animação de alta frequência, onde
+       manter controle direto sobre quando cada cálculo roda é mais seguro
+       e evita reatividade desnecessária brigando com o rAF. -->
+  <script>
+    // Aplica o tema salvo (ou preferência do sistema) ANTES do Alpine
+    // carregar, pra não ter flash de tema errado — mesma lógica que já
+    // existia em script.js, só que síncrona e mais cedo.
+    (function () {
+      var stored = localStorage.getItem("pp-theme");
+      var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.setAttribute("data-theme", stored || (prefersLight ? "light" : "dark"));
+    })();
+
+    function ppApp() {
+      return {
+        theme: document.documentElement.getAttribute("data-theme"),
+        menuOpen: false,
+        toggleTheme() {
+          this.theme = this.theme === "light" ? "dark" : "light";
+          localStorage.setItem("pp-theme", this.theme);
+        },
+        openMenu() {
+          this.menuOpen = true;
+          document.body.classList.add("menu-open");
+        },
+        closeMenu() {
+          this.menuOpen = false;
+          document.body.classList.remove("menu-open");
+        },
+      };
+    }
+  </script>
+  <script defer src="js/vendor/alpine-3.14.1.min.js"></script>
+
+  <!-- ===================== SEO — meta tags principais ===================== -->
+  <title>Prime Pintura | Pintura Residencial e Comercial em São Paulo</title>
+  <meta name="description" content="Prime Pintura: pintura residencial e comercial na Guilhermina e em toda a capital de São Paulo. Acabamento fino, texturas e orçamento rápido pelo WhatsApp." />
+  <meta name="keywords" content="pintura residencial, pintura comercial, pintor são paulo, pintor guilhermina, empresa de pintura, textura de parede, orçamento pintura são paulo" />
+  <meta name="author" content="Prime Pintura" />
+  <link rel="canonical" href="https://pinturaprime.com.br/" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / redes sociais -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Prime Pintura" />
+  <meta property="og:title" content="Prime Pintura | Pintura Residencial e Comercial em São Paulo" />
+  <meta property="og:description" content="Acabamento fino, texturas e cor sob medida. Atendemos a Guilhermina e toda a capital de São Paulo. Peça seu orçamento pelo WhatsApp." />
+  <meta property="og:url" content="https://pinturaprime.com.br/" />
+  <meta property="og:image" content="https://pinturaprime.com.br/assets/img/og-cover.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Prime Pintura — pintura residencial e comercial em São Paulo" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Prime Pintura | Pintura Residencial e Comercial em São Paulo" />
+  <meta name="twitter:description" content="Acabamento fino, texturas e cor sob medida. Atendemos a Guilhermina e toda a capital de São Paulo." />
+  <meta name="twitter:image" content="https://pinturaprime.com.br/assets/img/og-cover.jpg" />
+
+  <meta name="theme-color" content="#0e0e10" />
+
+  <!-- ===================== Dados estruturados (JSON-LD) — LocalBusiness ===================== -->
+  <!-- areaServed lista os locais que o negócio atende para o Google entender
+       o alcance geográfico real (Guilhermina + toda a capital paulista),
+       além do endereço fixo em "address" (usado para o mapa/local exato). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Prime Pintura",
+    "image": "https://pinturaprime.com.br/assets/img/og-cover.jpg",
+    "url": "https://pinturaprime.com.br/",
+    "telephone": "+5511913415626",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Evans",
+      "addressLocality": "Vila Esperança, São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "03648-020",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -23.5269036,
+      "longitude": -46.5252139
+    },
+    "areaServed": [
+      { "@type": "Place", "name": "Guilhermina, São Paulo" },
+      { "@type": "City", "name": "São Paulo" }
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "18"
+    },
+    "sameAs": [
+      "https://www.instagram.com/primepintura12"
+    ]
+  }
+  </script>
+
+  <!-- ===================== Fontes (Google Fonts) ===================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="flandao/flandao-widget.css" />
+  <link rel="icon" type="image/jpeg" href="assets/logo/loading-logo.jpg" sizes="520x520" />
+  <link rel="apple-touch-icon" href="assets/logo/loading-logo.jpg" />
+</head>
+<body>
+
+  <!-- ===================== TELA DE CARREGAMENTO ===================== -->
+  <!-- Preloader em tela cheia, no estilo do site da Rockstar (GTA VI):
+       fundo preto, logo centralizado que aparece com um fade + leve escala,
+       e some suavemente assim que a página termina de carregar (ver
+       initPreloader em script.js). Fica visível por um tempo mínimo mesmo
+       em conexões rápidas, pra não "piscar" na tela. -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-logo-wrap">
+      <span class="preloader-pulse"></span>
+      <span class="preloader-pulse preloader-pulse--delay"></span>
+      <div class="preloader-logo-clip">
+        <img src="assets/img/loading-logo.jpg" alt="" class="preloader-logo" />
+        <span class="preloader-shine"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SKIP LINK (acessibilidade) ===================== -->
+  <a href="#conteudo" class="visually-hidden">Pular para o conteúdo</a>
+
+  <!-- ===================== INDICADOR "ROLO DE TINTA" ===================== -->
+  <div class="scroll-roller" aria-hidden="true">
+    <div class="scroll-roller__track">
+      <div class="scroll-roller__fill"></div>
+      <svg class="scroll-roller__icon" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="8" width="14" height="6" rx="2" fill="url(#rollerGrad)"/>
+        <rect x="16" y="9.5" width="4" height="3" rx="1" fill="#a7a49f"/>
+        <line x1="20" y1="11" x2="22" y2="11" stroke="#a7a49f" stroke-width="1.4" stroke-linecap="round"/>
+        <defs>
+          <linearGradient id="rollerGrad" x1="2" y1="8" x2="16" y2="14">
+            <stop stop-color="#f2b705"/>
+            <stop offset="1" stop-color="#e8641c"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="#topo" class="logo"><img src="assets/logo/logo-light.png" alt="Prime Pintura" class="logo-img" /></a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#sobre">Quem somos</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#galeria">Fotos</a></li>
+          <li><a href="#avaliacoes">Avaliações</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <!-- Agrupa tema + hambúrguer juntos à direita — evita o botão de tema
+           "flutuando" sozinho no meio do header em telas pequenas (era o
+           que acontecia antes, por ele estar dentro de .main-nav). -->
+      <div class="header-actions">
+        <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Abrir menu" @click="openMenu()" :aria-expanded="menuOpen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MENU MOBILE (overlay) ===================== -->
+  <div class="mobile-menu" id="topo" :class="{ 'is-open': menuOpen }">
+    <!-- Topo do overlay: tema à esquerda, fechar à direita — mesma lógica
+         de agrupamento do header principal. -->
+    <div class="mobile-menu-top">
+      <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <button type="button" class="mobile-menu-close" aria-label="Fechar menu" @click="closeMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+      </button>
+    </div>
+
+    <nav aria-label="Navegação mobile" @click="closeMenu()">
+      <ul>
+        <li><span class="mobile-menu-index">01</span><a href="#sobre">Quem somos</a></li>
+        <li><span class="mobile-menu-index">02</span><a href="#servicos">Serviços</a></li>
+        <li><span class="mobile-menu-index">03</span><a href="#galeria">Fotos</a></li>
+        <li><span class="mobile-menu-index">04</span><a href="#avaliacoes">Avaliações</a></li>
+        <li><span class="mobile-menu-index">05</span><a href="#contato">Contato</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <!-- Link direto para o WhatsApp comercial com mensagem predefinida -->
+        <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pintura." class="btn btn-primary btn-sm btn-icon" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+          <span>Solicite orçamento</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="conteudo">
+
+    <!-- ===================== HERO — cena cinematográfica scroll-scrubbed ===================== -->
+    <!-- O wrapper tem 400vh: enquanto ele rola, script.js desenha o frame
+         correto (dos 48 extraídos do vídeo de tinta laranja) no canvas,
+         criando o efeito de vídeo controlado pelo scroll. -->
+    <section class="hero-wrapper">
+      <div class="hero-pin">
+        <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-scrim"></div>
+
+        <div class="hero-content" data-range="0,0.05">
+          <h1 class="hero-title">Cada parede tem uma <em> história</em> pra contar</h1>
+          <p class="hero-sub">Pintura residencial e comercial em São Paulo, com acabamento fino, texturas sob medida e um time que trata sua casa como se fosse a nossa.</p>
+          <div class="hero-actions">
+            <!-- Botão principal de conversão para o WhatsApp -->
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pintura." class="btn btn-primary" target="_blank" rel="noopener">Solicite seu orçamento</a>
+            <a href="#servicos" class="btn btn-outline">Ver serviços</a>
+          </div>
+        </div>
+
+        <!-- Textos que surgem conforme o usuário rola dentro da cena do Hero,
+             sincronizados com o progresso do vídeo (0 a 1) calculado em
+             script.js. Cada bloco tem seu próprio intervalo de progresso
+             (data-range="início,fim") em que fica visível. -->
+        <div class="hero-story" aria-hidden="true">
+          <div class="hero-story__item" data-range="0.08,0.32">
+            <span class="hero-story__num">01</span>
+            <p>Preparo da superfície: lixa, massa e selador antes de qualquer pincelada.</p>
+          </div>
+          <div class="hero-story__item" data-range="0.36,0.60">
+            <span class="hero-story__num">02</span>
+            <p>Tinta de qualidade, aplicada nas demãos certas — sem economizar no que garante durabilidade.</p>
+          </div>
+          <div class="hero-story__item" data-range="0.64,0.88">
+            <span class="hero-story__num">03</span>
+            <p>Acabamento revisado antes da entrega. Se não ficou perfeito, a gente refaz.</p>
+          </div>
+        </div>
+
+        <div class="hero-scrollcue">role para começar</div>
+      </div>
+    </section>
+
+    <!-- ===================== QUEM SOMOS ===================== -->
+    <section class="section" id="sobre">
+      <div class="container about" data-reveal>
+        <div class="about-media">
+          <picture>
+            <source srcset="assets/gallery/foto5.webp" type="image/webp" />
+            <img src="assets/gallery/foto5.jpg" alt="Detalhe de sanca de gesso com iluminação embutida, um dos projetos da Prime Pintura" loading="lazy" width="900" height="900" />
+          </picture>
+          <span class="about-media-tag">Prime Pintura · Guilhermina e toda São Paulo</span>
+        </div>
+
+        <div class="about-text">
+          <p class="eyebrow">Quem somos</p>
+          <h2 class="section-title">Uma equipe, um padrão de qualidade</h2>
+          <p class="section-lead" style="max-width: 52ch;">
+            A Prime Pintura é uma empresa de pintura residencial e comercial que atende a região da Guilhermina e toda a capital de São Paulo. Trabalhamos com equipe própria, do primeiro contato ao último retoque — sem terceirizar o serviço pra quem você não conhece.
+          </p>
+          <p class="section-lead" style="max-width: 52ch; margin-top: 1rem;">
+            Levamos a sério o que a maioria pula: lixar direito, tratar trinca e infiltração antes de pintar, proteger piso e móveis, e revisar cada ambiente antes de considerar a obra entregue.
+          </p>
+
+          <ul class="about-checklist">
+            <li>Orçamento rápido e sem compromisso</li>
+            <li>Equipamentos de primeira linha</li>
+            <li>Proteção de piso e móveis incluída em todo serviço (sem sujeira) </li>
+            <li>Atendimento na guilhermiana, esperança e em toda a Grande São Paulo</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO DE VÍDEO — "Qualidade que dura" ===================== -->
+    <!-- Vídeo laranja (o mesmo que já foi Hero antes) reaproveitado aqui como
+         loop com parallax leve — mesma técnica das seções amarela/azul.
+         Posicionada logo após o Hero (a pedido do cliente) para manter a
+         sequência inicial toda animada, uma seção de vídeo puxando a outra. -->
+    <section class="video-feature">
+      <video autoplay muted loop playsinline preload="metadata"
+             poster="assets/video/laranja-poster.jpg"
+             aria-hidden="true">
+        <source src="assets/video/laranja-loop.webm" type="video/webm" />
+        <source src="assets/video/laranja-loop.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-scrim"></div>
+
+      <div class="container">
+        <div class="video-feature-content" data-scroll-reveal>
+          <p class="eyebrow">Qualidade que dura</p>
+          <h2 class="section-title">Tinta de verdade não desbota nem mancha</h2>
+          <p class="section-lead">Trabalhamos só com linhas de tinta de qualidade comprovada — o tipo de detalhe que não aparece no orçamento, mas aparece na parede depois de dois anos de sol.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SERVIÇOS ===================== -->
+    <section class="section" id="servicos">
+      <div class="container">
+        <p class="eyebrow" data-reveal>O que fazemos</p>
+        <h2 class="section-title" data-reveal>Serviços</h2>
+        <p class="section-lead" data-reveal>Do apartamento novo à fachada comercial — cada projeto recebe o preparo e o acabamento certos para o ambiente.</p>
+
+        <div class="services-grid" data-reveal="stagger">
+          <article class="service-card">
+            <span class="service-index">01</span>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg>
+            <h3>Pintura residencial</h3>
+            <p>Apartamentos, casas e condomínios — cômodo a cômodo ou obra completa. Preparo de superfície, tratamento de trincas e proteção total de piso e móveis inclusos.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-index">02</span>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M6 21V7l6-4 6 4v14M10 21v-5h4v5M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>
+            <h3>Pintura comercial</h3>
+            <p>Lojas, escritórios, fachadas e prédios comerciais, com cronograma flexível — inclusive fora do horário de funcionamento — para não parar o seu negócio.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-index">03</span>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M4 12h16M12 4v16" stroke-dasharray="1 3"/></svg>
+            <h3>Texturas</h3>
+            <p>Grafiatos, texturas acrílicas e efeitos decorativos para dar personalidade a uma parede de destaque.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-index">04</span>
+            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4 5.7 20.8 8 13.6 2 9.2h7.6z"/></svg>
+            <h3>Fino acabamento</h3>
+            <p>Laca, esmalte sintético em portas e batentes, e todo detalhe que separa um serviço bom de um impecável.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO DE VÍDEO — "Cores sob medida" ===================== -->
+    <!-- Vídeo amarelo em loop com leve parallax (deslocamento via JS conforme
+         o scroll), técnica mais leve que o scroll-scrubbing do Hero. Fica
+         entre Serviços e Galeria — intercalando vídeo/conteúdo, sem duas
+         seções de vídeo grudadas uma embaixo da outra. -->
+    <section class="video-feature">
+      <video autoplay muted loop playsinline preload="metadata"
+             poster="assets/video/amarelo-poster.jpg"
+             aria-hidden="true">
+        <source src="assets/video/amarelo-loop.webm" type="video/webm" />
+        <source src="assets/video/amarelo-loop.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-scrim"></div>
+
+      <div class="container">
+        <div class="video-feature-content" data-scroll-reveal>
+          <p class="eyebrow">Cor sob medida</p>
+          <h2 class="section-title">Sua cor, sua textura, do seu jeito</h2>
+          <p class="section-lead">Trabalhamos com as principais linhas de tinta do mercado e ajudamos você a escolher a cor certa para cada ambiente — sem achismo, com amostra na parede antes de fechar.</p>
+
+          <div class="color-chips" aria-hidden="true">
+            <span class="color-chip" style="--c:#f2b705"></span>
+            <span class="color-chip" style="--c:#e8641c"></span>
+            <span class="color-chip" style="--c:#c0392b"></span>
+            <span class="color-chip" style="--c:#2f6fed"></span>
+            <span class="color-chip" style="--c:#1f8a5f"></span>
+            <span class="color-chip" style="--c:#7a4bd1"></span>
+            <span class="color-chip" style="--c:#1a1a1d; --border:#726f6b"></span>
+            <span class="color-chip" style="--c:#f5f1ea; --border:#a7a49f"></span>
+            <span class="color-chip" style="--c:#726f6b"></span>
+            <span class="color-chip" style="--c:#0fb5c4"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALERIA DE FOTOS ===================== -->
+    <!-- 11 fotos reais de projetos. Cada foto tem um botão de lupa que abre
+         o lightbox (ver script.js). -->
+    <section class="section" id="galeria">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Sessão de fotos</p>
+        <h2 class="section-title" data-reveal>Projetos recentes</h2>
+        <p class="section-lead" data-reveal>Uma amostra do nosso trabalho. Clique em qualquer foto para ampliar.</p>
+
+        <div class="gallery-grid" data-reveal="stagger">
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto2.jpg" data-caption="Residencial — Sala · parede decorativa">
+            <picture>
+              <source srcset="assets/gallery/foto2.webp" type="image/webp" />
+              <img src="assets/gallery/foto2.jpg" alt="Sala de estar com parede decorativa marmorizada pintada pela Prime Pintura" loading="lazy" width="900" height="900" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Sala· parede decorativa</strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto1.jpg" data-caption="Residencial — Quarto · acabamento fosco">
+            <picture>
+              <source srcset="assets/gallery/foto1.webp" type="image/webp" />
+              <img src="assets/gallery/foto1.jpg" alt="Quarto recém pintado em tom neutro, acabamento fosco" loading="lazy" width="900" height="900" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Quarto · acabamento </strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto3.jpg" data-caption="Residencial — Sala · integração com varanda">
+            <picture>
+              <source srcset="assets/gallery/foto3.webp" type="image/webp" />
+              <img src="assets/gallery/foto3.jpg" alt="Sala de estar integrada com varanda, piso de madeira e parede decorativa" loading="lazy" width="900" height="900" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Sala · Acabamento de qualidade </strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto5.jpg" data-caption="Residencial — Sanca · iluminação embutida">
+            <picture>
+              <source srcset="assets/gallery/foto5.webp" type="image/webp" />
+              <img src="assets/gallery/foto5.jpg" alt="Sanca de gesso com iluminação embutida em apartamento" loading="lazy" width="900" height="900" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow"> Residencial</span>
+              <strong>Sanca · iluminação embutida e acabamento em gesso </strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item span-2" data-lightbox="assets/gallery/foto4.jpg" data-caption="Residencial — Fachada · sobrado completo">
+            <picture>
+              <source srcset="assets/gallery/foto4.webp" type="image/webp" />
+              <img src="assets/gallery/foto4.jpg" alt="Fachada de sobrado em fase final de acabamento" loading="lazy" width="900" height="900" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Fachada · sobrado completo</strong>
+            </span>
+          </button>
+          
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto6.jpg" data-caption="Comercial — Fachada · prédio comercial">
+            <picture>
+              <source srcset="assets/gallery/foto6.webp" type="image/webp" />
+              <img src="assets/gallery/foto6.jpg" alt="Fachada de prédio comercial pintada pela Prime Pintura" loading="lazy" width="756" height="1600" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Comercial</span>
+              <strong>Prédio comercial</strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto7.jpg" data-caption="Residencial — condomínio · com acabamento">
+            <picture>
+              <source srcset="assets/gallery/foto7.webp" type="image/webp" />
+              <img src="assets/gallery/foto7.jpg" alt="Fachada residencial em tom bege com detalhes em pedra e portão de ferro pintados pela Prime Pintura" loading="lazy" width="720" height="1282" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>condomínio · com acabamento</strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto9.jpg" data-caption="Residencial — Quarto · Cada detalhe feito com carinho">
+            <picture>
+              <source srcset="assets/gallery/foto9.webp" type="image/webp" />
+              <img src="assets/gallery/foto9.jpg" alt="Quarto com parede em revestimento cinza e iluminação embutida no teto, obra da Prime Pintura" loading="lazy" width="756" height="1600" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Quarto · Cada detalhe feito com carinho</strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item span-2" data-lightbox="assets/gallery/foto10.jpg" data-caption="Residencial — Fachada · pintura em execução">
+            <picture>
+              <source srcset="assets/gallery/foto10.webp" type="image/webp" />
+              <img src="assets/gallery/foto10.jpg" alt="Pintor da Prime Pintura aplicando tinta em portão de fachada residencial verde" loading="lazy" width="720" height="1282" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Fachada · pintura em execução</strong>
+            </span>
+          </button>
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto11.jpg" data-caption="Residencial — Fachada · sobrado geminado">
+            <picture>
+              <source srcset="assets/gallery/foto11.webp" type="image/webp" />
+              <img src="assets/gallery/foto11.jpg" alt="Fachada de sobrado geminado em tom cinza claro pintada pela Prime Pintura" loading="lazy" width="721" height="1600" />
+            </picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Fachada · sobrado geminado</strong>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO DE VÍDEO — "Confiança em cada camada" ===================== -->
+    <!-- Segundo vídeo em loop (tinta azul), mesma técnica leve de parallax
+         usada na seção amarela — script.js já trata múltiplas .video-feature. -->
+    <section class="video-feature video-feature--azul">
+      <video autoplay muted loop playsinline preload="metadata"
+             poster="assets/video/azul-poster.jpg"
+             aria-hidden="true">
+        <source src="assets/video/azul-loop.webm" type="video/webm" />
+        <source src="assets/video/azul-loop.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-scrim"></div>
+
+      <div class="container">
+        <div class="video-feature-content" data-scroll-reveal>
+          <p class="eyebrow">Confiança em cada camada</p>
+          <h2 class="section-title">Do orçamento à última demão, sem surpresas</h2>
+          <p class="section-lead">Prazo combinado, material informado com antecedência e proteção de móveis e piso em todo o serviço. Você acompanha o andamento do início ao fim.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== AVALIAÇÕES DO GOOGLE ===================== -->
+    <!-- Conteúdo baseado nas avaliações reais do Google (nota e volume) do
+         perfil da Prime Pintura. Os depoimentos abaixo são reescritos com
+         as próprias palavras a partir do conteúdo das avaliações reais,
+         sem reproduzir o texto original — e sem nome completo, já que a
+         API pública do Google não expõe o nome dos autores por aqui. -->
+    <section class="section" id="avaliacoes">
+      <div class="container">
+        <div class="reviews-head" data-reveal>
+          <div>
+            <p class="eyebrow">Avaliações do Google</p>
+            <h2 class="section-title">O que dizem os clientes</h2>
+          </div>
+          <!-- Link direto para o perfil oficial da Prime Pintura no Google Maps / Avaliações -->
+          <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="reviews-score" target="_blank" rel="noopener" aria-label="Ver todas as 18 avaliações nota 5.0 no Google Maps" style="text-decoration:none; color:inherit;">
+            <span class="num">5.0</span>
+            <div>
+              <span class="reviews-stars">★★★★★</span>
+              <div class="stat-label">18 avaliações no Google ↗</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="reviews-track" data-reveal tabindex="0" aria-label="Carrossel de avaliações, arraste para o lado">
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Contratei antes de me mudar para o apartamento novo — serviço nota 1000, superou a expectativa.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Pintaram meu apartamento inteiro, acabamento impecável e preço bem acessível. Profissionais excelentes.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Precisava devolver o apartamento pra imobiliária rápido — serviço ágil, com qualidade e preço justo. Recomendo bastante.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Trabalho impecável, transformou o ambiente da casa — e com preço acessível.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Equipe gente boa e esforçada, preço acessível do início ao fim do serviço.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="cta-final" id="contato">
+      <div class="container">
+        <p class="eyebrow" style="justify-content:center;" data-reveal>Vamos conversar</p>
+        <h2 class="section-title" data-reveal>Pronto para transformar sua parede?</h2>
+        <p class="section-lead" data-reveal>Chama no WhatsApp e receba um orçamento sem compromisso, no mesmo dia.</p>
+        <div class="cta-actions" data-reveal>
+          <!-- WhatsApp comercial para solicitação de orçamento imediato -->
+          <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pintura." class="btn btn-primary" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <!-- Localização e perfil comercial no Google Maps -->
+          <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="btn btn-outline" target="_blank" rel="noopener">Ver endereço no Google Maps</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#topo" class="logo"><img src="assets/logo/logo.png" alt="Prime Pintura" class="logo-img" /></a>
+          <p>Pintura residencial e comercial em São Paulo. Preparo correto, tinta de qualidade e acabamento que dura.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#sobre">Quem somos</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#galeria">Fotos</a></li>
+            <li><a href="#avaliacoes">Avaliações</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <ul>
+            <li><address>Rua Evans, Vila Esperança<br />São Paulo - SP, 03648-020</address></li>
+            <li><a href="tel:+5511913415626">(11) 91341-5626</a></li>
+            <li><a href="https://wa.me/5511913415626" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="current-year"></span> Prime Pintura. Todos os direitos reservados.</span>
+        <span>Desenvolvido por <a href="https://www.linkedin.com/in/bruno-carvalho-silvaa" target="_blank" rel="noopener">Bruno Carvalho</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== BOTÕES FLUTUANTES ===================== -->
+  <div class="floating-actions">
+    <!-- Botão flutuante direto do WhatsApp da Prime Pintura -->
+    <a class="fab-whatsapp" href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pintura." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+    </a>
+    <a class="fab-instagram" href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener" aria-label="Ver Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    </a>
+  </div>
+
+  <!-- ===================== LIGHTBOX (visualização ampliada da foto) ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de foto ampliada" hidden>
+    <button type="button" class="lightbox-close" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5 8 12l7 7"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="Próxima foto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <figure>
+      <img id="lightbox-img" src="" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="flandao/flandao-widget.js" defer></script>
+</body>
+</html>

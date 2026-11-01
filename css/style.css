@@ -1,0 +1,1345 @@
+/* ==========================================================================
+   PRIME PINTURA — style.css
+   Site institucional com narrativa de scroll cinematográfica.
+   Estrutura do arquivo:
+   1. Reset & variáveis (design tokens)
+   2. Tipografia base
+   3. Utilitários
+   4. Header / navegação
+   5. Progresso de rolo de tinta (indicador de scroll)
+   6. Hero (cena cinematográfica com sequência de frames)
+   7. Quem Somos
+   8. Serviços
+   9. Seção de vídeo (loop amarelo com parallax)
+   10. Galeria de fotos
+   11. Avaliações do Google (carrossel arrastável)
+   12. CTA final
+   13. Rodapé
+   14. Botões flutuantes (WhatsApp / Instagram)
+   15. Responsivo (mobile-first refinado)
+   16. Acessibilidade (prefers-reduced-motion, foco visível)
+   ========================================================================== */
+
+/* ---------- 1. RESET & DESIGN TOKENS ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Cor: paleta inspirada nos próprios vídeos de tinta (laranja/amarelo) sobre
+     fundo grafite quase preto, com um off-white quente para o texto. */
+  --bg: #0e0e10;
+  --bg-alt: #131315;
+  --surface: #1a1a1d;
+  --surface-2: #272323;
+  --line: rgba(234, 245, 235, 0.1);
+  --line-strong: rgba(234, 245, 234, 0.18);
+
+  --text: #f5f1ea;
+  --text-muted: #a7a49f;
+  --text-dim: #6b726d;
+
+  /* Cores fixas usadas SOMENTE sobre mídia (vídeo/foto) — Hero, seções de
+     vídeo, legendas de galeria. Não mudam com o tema, porque o fundo ali
+     é sempre escuro (vídeo/scrim), independente do tema claro/escuro. */
+  --media-text: #f5f1ea;
+  --media-text-muted: #cfcfcf;
+  /* Faixa do header — SEMPRE um "chrome" escuro translúcido, independente
+     do tema claro/escuro da página. Isso evita o problema de contraste que
+     tínhamos antes: o logo e os ícones do header são sempre claros, então
+     um fundo de header que virasse claro no tema light os deixava
+     invisíveis. O toggle de tema abaixo afeta só as seções de conteúdo. */
+  --header-bg-scrolled: rgba(14, 14, 16, 0.68);
+  /* Fundo do overlay do menu mobile — esse sim segue o tema, já que é mais
+     parecido com uma "página" de conteúdo do que com o chrome fixo do header. */
+  --menu-overlay-bg: rgba(14, 14, 16, 0.9);
+
+  --orange: #e8641c;
+  --orange-light: #ff8a42;
+  --yellow: #f2b705;
+  --yellow-light: #ffd23f;
+
+  /* Gradiente de assinatura: usado no indicador de scroll e em detalhes */
+  --paint-gradient: linear-gradient(180deg, var(--yellow) 0%, var(--orange) 100%);
+
+  /* Tipografia */
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  /* Espaçamento em escala */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 7rem;
+
+  --radius: 10px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- TEMA CLARO ---------- */
+/* Afeta apenas as seções de conteúdo "normais" (fundo da página, cards,
+   texto corrido, rodapé). Hero e seções de vídeo continuam escuras de
+   propósito — é onde o vídeo/foto forma o fundo, então texto claro sobre
+   fundo escuro sempre funciona ali, em qualquer tema. */
+[data-theme="light"] {
+  --bg: #faf7f2;
+  --bg-alt: #f2ede4;
+  --surface: #ffffff;
+  --surface-2: #f2ede4;
+  --line: rgba(23, 19, 15, 0.10);
+  --line-strong: rgba(23, 19, 15, 0.16);
+
+  --text: #17130f;
+  --text-muted: #635e57;
+  --text-dim: #938d84;
+
+  /* O header (--header-bg-scrolled) NÃO muda com o tema — ver explicação
+     completa em :root, no início do arquivo. Só o overlay do menu mobile
+     segue o tema claro/escuro: */
+  --menu-overlay-bg: rgba(250, 247, 242, 0.94);
+}
+
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.4s var(--ease), color 0.4s var(--ease);
+}
+
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* Foco visível para navegação por teclado (acessibilidade) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* ---------- 2. TIPOGRAFIA BASE ---------- */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  font-weight: 400; /* Anton já é bold por natureza */
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.02;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: var(--space-sm);
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--paint-gradient);
+  display: inline-block;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  margin-bottom: var(--space-sm);
+}
+
+.section-lead {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 46ch;
+}
+
+/* ---------- 3. UTILITÁRIOS ---------- */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--space-xl);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.95em 1.8em;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--paint-gradient);
+  color: #17130c;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -8px rgba(232, 100, 28, 0.55); }
+
+/* Efeito elegante: um brilho fino atravessa o botão da esquerda pra
+   direita ao passar o mouse — sutil, sem ser chamativo demais. */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.65), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.65s var(--ease);
+  pointer-events: none;
+}
+.btn-primary:hover::after { left: 130%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary::after { display: none; }
+}
+
+.btn-outline {
+  border: 1.5px solid var(--line-strong);
+  color: var(--text);
+}
+.btn-outline:hover { border-color: var(--orange-light); color: var(--orange-light); transform: translateY(-2px); }
+
+.hero-actions .btn-outline {
+  color: var(--media-text);
+  border-color: rgba(245,241,234,0.4);
+}
+.hero-actions .btn-outline:hover { border-color: var(--orange-light); color: var(--orange-light); }
+
+.btn-sm { padding: 0.42em 1.05em; font-size: 0.66rem; letter-spacing: 0.04em; }
+
+.btn-icon { gap: 0.5em; }
+.btn-icon svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+/* Botão de alternar tema claro/escuro */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  color: var(--text);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.theme-toggle:hover { background: var(--line); }
+.theme-toggle svg { width: 19px; height: 19px; }
+.theme-toggle .icon-moon { display: none; }
+[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+/* No header, o botão fica sobre a área "chrome" escura fixa — força cor clara */
+.site-header .theme-toggle { color: var(--media-text); }
+.site-header .theme-toggle:hover { background: rgba(245,241,234,0.12); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- PRELOADER (tela de carregamento) ---------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999; /* acima de tudo, inclusive do header e do lightbox */
+  background: #050506;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+.preloader-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  animation: preloader-in 1.1s var(--ease) forwards;
+}
+
+/* Anel neon giratório atrás do logo — usa @property pra animar o ângulo
+   do conic-gradient de forma suave. Em navegadores sem suporte a
+   @property (ex: Firefox mais antigo), o anel some suavemente: ainda dá
+   pra ver o brilho pulsante do logo, só sem o giro. */
+@property --ring-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.preloader-logo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from var(--ring-angle),
+    var(--yellow) 0deg, var(--orange) 90deg, #ff3d7f 180deg,
+    var(--orange) 270deg, var(--yellow) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: blur(0.5px) drop-shadow(0 0 14px rgba(232,100,28,0.65)) drop-shadow(0 0 26px rgba(242,183,5,0.4));
+  animation: preloader-ring-spin 3.2s linear infinite;
+}
+@keyframes preloader-ring-spin {
+  to { --ring-angle: 360deg; }
+}
+
+.preloader-logo {
+  position: relative;
+  z-index: 1;
+  width: min(220px, 42vw);
+  height: auto;
+  display: block;
+  /* Brilho neon pulsante por trás do logo, alternando entre as cores da
+     marca — o box-shadow não é cortado pelo overflow do clip ao lado, então
+     o halo aparece por fora do círculo normalmente. */
+  animation: preloader-glow-pulse 2.4s ease-in-out infinite;
+}
+@keyframes preloader-glow-pulse {
+  0%, 100% { box-shadow: 0 0 30px 6px rgba(232,100,28,0.45), 0 0 60px 14px rgba(232,100,28,0.18); }
+  50%      { box-shadow: 0 0 40px 10px rgba(242,183,5,0.55), 0 0 74px 20px rgba(242,183,5,0.22); }
+}
+
+/* Recorte circular do logo + vinheta nas bordas (a foto original tem um
+   fundo em textura de concreto — a vinheta esmaece as bordas até ficarem
+   transparentes, fazendo a imagem se misturar ao preto do preloader em vez
+   de aparecer como um "quadrado" duro). O overflow:hidden aqui também é o
+   que mantém o brilho .preloader-shine (abaixo) contido dentro do círculo. */
+.preloader-logo-clip {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 78%);
+  mask-image: radial-gradient(circle, #000 58%, transparent 78%);
+}
+
+/* Brilho diagonal que atravessa o logo periodicamente, tipo reflexo de luz
+   passando — mesma ideia do brilho nos botões, só que em loop contínuo em
+   vez de só no hover. */
+.preloader-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(115deg,
+    transparent 30%,
+    rgba(255,255,255,0.75) 48%,
+    rgba(255,220,150,0.55) 52%,
+    transparent 70%);
+  transform: translateX(-120%);
+  animation: preloader-shine-sweep 2.8s ease-in-out infinite;
+  animation-delay: 0.6s;
+  pointer-events: none;
+}
+@keyframes preloader-shine-sweep {
+  0%, 40%  { transform: translateX(-120%); }
+  60%      { transform: translateX(120%); }
+  100%     { transform: translateX(120%); }
+}
+
+/* Anéis "sonar": expandem a partir do tamanho do logo e desaparecem,
+   um logo em seguida do outro (delay), criando um pulso contínuo ao redor. */
+.preloader-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--orange-light);
+  opacity: 0;
+  animation: preloader-pulse-ring 2.6s ease-out infinite;
+}
+.preloader-pulse--delay { animation-delay: 1.3s; }
+@keyframes preloader-pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.65; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+@keyframes preloader-in {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Estado final, adicionado via JS quando a página termina de carregar —
+   dá um fade suave e libera o scroll do body. */
+.preloader.is-done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader-logo-wrap { animation: none; opacity: 1; transform: none; }
+  .preloader-logo, .preloader-logo-wrap::before,
+  .preloader-shine, .preloader-pulse { animation: none; }
+  .preloader-shine, .preloader-pulse { display: none; }
+}
+
+/* Trava o scroll enquanto a tela de carregamento está visível */
+body:has(.preloader:not(.is-done)) { overflow: hidden; }
+
+/* ---------- 4. HEADER / NAVEGAÇÃO ---------- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  padding-block: var(--space-sm);
+  background: transparent;
+  transition: background 0.4s var(--ease), padding 0.4s var(--ease), border-color 0.4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.site-header.is-scrolled {
+  background: var(--header-bg-scrolled);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--line-strong);
+  padding-block: 0.7rem;
+}
+/* O header é sempre um "chrome" escuro (ver --header-bg-scrolled em
+   :root), então nav/hambúrguer/tema continuam com a cor fixa clara
+   (--media-text) o tempo todo — não precisam mudar ao rolar. */
+
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: clamp(48px, 9vw, 66px);
+  width: auto;
+  display: block;
+}
+.footer-brand .logo-img { height: clamp(40px, 7vw, 52px); }
+
+.main-nav { display: flex; align-items: center; }
+.main-nav ul { display: flex; gap: var(--space-md); }
+.main-nav a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--media-text-muted);
+  transition: color 0.25s ease;
+  position: relative;
+}
+.main-nav a:hover { color: var(--media-text); }
+
+/* Agrupa tema + hambúrguer à direita do header — ficam sempre juntos,
+   inclusive em telas pequenas (antes o botão de tema, por estar dentro de
+   .main-nav, ficava "flutuando" sozinho no meio do header no mobile). */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: var(--space-md);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 110;
+  padding: 6px;
+  margin: -6px;
+}
+.nav-toggle span {
+  width: 18px; height: 1.5px;
+  background: var(--media-text);
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+
+/* ---------- 5. INDICADOR DE SCROLL "ROLO DE TINTA" ---------- */
+/* Trilho fino fixo na lateral esquerda: conforme o usuário rola a página,
+   o preenchimento (gradiente laranja/amarelo) sobe e um "rolo" SVG acompanha
+   o topo do preenchimento — a mesma metáfora de pintura usada nos vídeos,
+   agora como elemento de orientação em toda a navegação do site. */
+.scroll-roller {
+  position: fixed;
+  left: clamp(10px, 2vw, 22px);
+  top: 50%;
+  transform: translateY(-50%);
+  height: min(46vh, 380px);
+  width: 4px;
+  z-index: 90;
+  display: flex;
+  justify-content: center;
+}
+.scroll-roller__track {
+  position: relative;
+  width: 2px;
+  height: 100%;
+  background: var(--line-strong);
+  border-radius: 2px;
+  overflow: visible;
+}
+.scroll-roller__fill {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  height: 0%; /* controlado via JS */
+  background: var(--paint-gradient);
+  border-radius: 2px;
+}
+.scroll-roller__icon {
+  position: absolute;
+  left: 50%;
+  bottom: 0%; /* controlado via JS, acompanha o topo do fill */
+  transform: translate(-50%, -70%) rotate(90deg);
+  width: 22px; height: 22px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+@media (max-width: 860px) {
+  .scroll-roller { display: none; } /* em telas pequenas o espaço lateral é precioso */
+}
+
+/* ---------- 6. HERO CINEMATOGRÁFICO ---------- */
+/* Wrapper alto (400vh) permite "pinar" a cena por mais tempo de rolagem;
+   .hero-pin fica sticky ocupando a viewport inteira enquanto o wrapper rola. */
+.hero-wrapper {
+  position: relative;
+  height: 400vh;
+}
+.hero-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  perspective: 1400px; /* dá profundidade real ao leve rotateX do canvas abaixo */
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.94) saturate(1.1) contrast(1.02);
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* transform (leve escala + rotateX) é atualizado quadro a quadro em
+     script.js, proporcional ao progresso do scroll — dá a sensação de
+     profundidade 3D combinando com o próprio vídeo (que já é um render 3D). */
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(0deg, rgba(10,10,11,0.82) 0%, rgba(10,10,11,0.12) 42%, rgba(10,10,11,0.4) 100%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  left: 0; right: 0; bottom: 0;
+  width: 100%;
+  padding: 0 clamp(1.25rem, 5vw, 3rem) clamp(2.5rem, 8vh, 5rem);
+  will-change: opacity, transform;
+}
+
+.hero-title {
+  font-size: clamp(3.1rem, 10vw, 7.8rem);
+  max-width: 14ch;
+  color: var(--media-text);
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+}
+.hero-title em {
+  font-style: normal;
+  background: var(--paint-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-sub {
+  margin-top: var(--space-sm);
+  max-width: 48ch;
+  color: var(--media-text-muted);
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+
+.hero-actions {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero-scrollcue {
+  position: absolute;
+  right: clamp(1.25rem, 5vw, 3rem);
+  bottom: var(--space-lg);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--media-text-muted);
+  writing-mode: vertical-rl;
+  transition: opacity 0.3s ease;
+}
+.hero-scrollcue::after {
+  content: "";
+  width: 1px; height: 46px;
+  background: linear-gradient(180deg, var(--media-text-muted), transparent);
+}
+
+/* Textos que surgem durante o scroll dentro do Hero (scrollytelling).
+   Ocupam exatamente o mesmo espaço do hero-content (canto inferior
+   esquerdo) — como o título já saiu de cena a essa altura da rolagem
+   (ver data-range no HTML), um substitui o outro sem se sobrepor.
+   A posição vertical (translateY) é calculada quadro a quadro em
+   script.js, proporcional ao progresso do scroll dentro do intervalo de
+   cada item — é o que dá a sensação de o texto "subir" com a rolagem,
+   como se estivesse descendo a página junto com o usuário. */
+.hero-story {
+  position: absolute;
+  z-index: 2;
+  left: 0; right: 0; bottom: 0;
+  padding: 0 clamp(1.25rem, 5vw, 3rem) clamp(2.5rem, 8vh, 5rem);
+}
+.hero-story__item {
+  position: absolute;
+  left: clamp(1.25rem, 5vw, 3rem);
+  right: clamp(1.25rem, 5vw, 3rem);
+  bottom: clamp(2.5rem, 8vh, 5rem);
+  max-width: 40ch;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+.hero-story__num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--orange-light);
+  margin-bottom: 0.6rem;
+}
+.hero-story__item p {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--media-text);
+  text-shadow: 0 4px 24px rgba(0,0,0,0.45);
+}
+
+@media (max-width: 860px) {
+  .hero-story__item p { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+}
+
+/* ---------- 7. QUEM SOMOS ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.about-media {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--surface);
+}
+.about-media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.about-media::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(10,10,11,0.75) 100%);
+}
+.about-media-tag {
+  position: absolute;
+  left: var(--space-sm); bottom: var(--space-sm);
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--media-text);
+  background: rgba(14,14,16,0.55);
+  padding: 0.5em 0.9em;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+}
+
+.about-checklist {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.about-checklist li {
+  position: relative;
+  padding-left: 1.8rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+.about-checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.15em;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--paint-gradient);
+}
+.about-checklist li::after {
+  content: "";
+  position: absolute;
+  left: 5px; top: 0.42em;
+  width: 8px; height: 4px;
+  border-left: 2px solid #17130c;
+  border-bottom: 2px solid #17130c;
+  transform: rotate(-45deg);
+}
+
+/* ---------- 8. SERVIÇOS ---------- */
+.services-grid {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.service-card {
+  background: var(--bg-alt);
+  padding: var(--space-md) var(--space-sm);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: background 0.35s var(--ease);
+}
+.service-card:hover { background: var(--surface); }
+
+.service-index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.service-icon {
+  width: 34px; height: 34px;
+  color: var(--orange-light);
+  margin-block: var(--space-sm);
+}
+
+.service-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0;
+}
+
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* ---------- 9. SEÇÃO DE VÍDEO (loop amarelo + parallax) ---------- */
+.video-feature {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.video-feature video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5) saturate(1.05);
+  will-change: transform;
+}
+.video-feature .hero-scrim {
+  background: linear-gradient(90deg, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.55) 48%, rgba(10,10,11,0.35) 100%);
+}
+.video-feature-content {
+  position: relative;
+  z-index: 2;
+  max-width: 640px;
+}
+.video-feature-content .section-title { color: var(--media-text); }
+.video-feature-content p.section-lead { color: rgba(245,241,234,0.82); }
+
+/* Estado inicial do conteúdo animado por scroll (ver script.js) — evita
+   flash de conteúdo sem estilo antes do JS calcular a opacidade/posição
+   corretas na primeira leitura de scroll. */
+[data-scroll-reveal] {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.color-chips {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+}
+.color-chip {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 2px solid var(--border, rgba(245,241,234,0.35));
+  box-shadow: 0 0 10px 1px color-mix(in srgb, var(--c) 65%, transparent),
+              0 0 22px 4px color-mix(in srgb, var(--c) 35%, transparent);
+  animation: chip-glow 3.2s ease-in-out infinite;
+  transition: transform 0.3s var(--ease);
+}
+.color-chip:hover {
+  transform: scale(1.14) translateY(-2px);
+  box-shadow: 0 0 14px 2px color-mix(in srgb, var(--c) 80%, transparent),
+              0 0 32px 8px color-mix(in srgb, var(--c) 55%, transparent);
+}
+/* Pulso sutil e contínuo no brilho, levemente dessincronizado entre as
+   bolinhas pra não parecer todas piscando junto. */
+@keyframes chip-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.18); }
+}
+.color-chip:nth-child(2n) { animation-delay: 0.6s; }
+.color-chip:nth-child(3n) { animation-delay: 1.1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .color-chip { animation: none; }
+}
+
+/* ---------- 10. GALERIA DE FOTOS ---------- */
+.gallery-grid {
+  margin-top: var(--space-lg);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-sm);
+}
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  isolation: isolate;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+button.gallery-item { cursor: zoom-in; }
+.gallery-item.is-placeholder { cursor: default; }
+
+/* Efeito "legal" ao passar o mouse: a foto sobe levemente e ganha um brilho
+   colorido ao redor que percorre a paleta da marca — dá vida à galeria sem
+   precisar de imagens extras. box-shadow (não pseudo-elemento) porque o
+   item tem overflow:hidden para recortar a foto em quadrado. */
+button.gallery-item:hover,
+button.gallery-item:focus-visible {
+  transform: translateY(-6px) scale(1.015);
+  animation: gallery-glow 2.6s ease-in-out infinite;
+}
+@keyframes gallery-glow {
+  0%, 100% { box-shadow: 0 16px 34px -10px rgba(232,100,28,0.55), 0 0 0 2px rgba(232,100,28,0.55); }
+  33%      { box-shadow: 0 16px 34px -10px rgba(242,183,5,0.55), 0 0 0 2px rgba(242,183,5,0.55); }
+  66%      { box-shadow: 0 16px 34px -10px rgba(47,111,237,0.5), 0 0 0 2px rgba(47,111,237,0.5); }
+}
+@media (prefers-reduced-motion: reduce) {
+  button.gallery-item:hover, button.gallery-item:focus-visible { animation: none; box-shadow: 0 16px 34px -10px rgba(232,100,28,0.55); }
+}
+
+/* Ícone de lupa que aparece no hover/foco, indicando que a foto amplia */
+.gallery-zoom {
+  position: absolute;
+  top: var(--space-xs); right: var(--space-xs);
+  z-index: 3;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(14,14,16,0.55);
+  backdrop-filter: blur(4px);
+  color: var(--media-text);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.gallery-zoom svg { width: 16px; height: 16px; }
+.gallery-item:hover .gallery-zoom,
+.gallery-item:focus-visible .gallery-zoom { opacity: 1; transform: scale(1); }
+/* Placeholder de foto: bloco em gradiente na paleta da marca até as fotos
+   reais dos projetos serem enviadas — ver comentário no HTML. */
+.gallery-item .ph-fill {
+  position: absolute; inset: 0;
+  background: var(--gallery-gradient, linear-gradient(135deg, #2a2a2d, #1a1a1d));
+}
+.gallery-item img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, rgba(10,10,11,0.85) 0%, rgba(10,10,11,0) 55%);
+}
+.gallery-item .gallery-caption {
+  position: absolute;
+  left: var(--space-sm); bottom: var(--space-sm);
+  z-index: 2;
+}
+.gallery-caption .eyebrow { margin-bottom: 0.25rem; }
+.gallery-caption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  color: var(--media-text);
+}
+.gallery-item.span-2 { grid-column: span 2; }
+
+/* ---------- 11. AVALIAÇÕES DO GOOGLE ---------- */
+.reviews-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+.reviews-score {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.reviews-score .num {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  color: var(--yellow-light);
+}
+.reviews-stars { color: var(--yellow-light); letter-spacing: 0.1em; }
+
+.reviews-track {
+  margin-top: var(--space-md);
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+  cursor: grab;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--orange) transparent;
+}
+.reviews-track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
+.reviews-track::-webkit-scrollbar { height: 6px; }
+.reviews-track::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 999px; }
+
+.review-card {
+  flex: 0 0 clamp(260px, 30vw, 340px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--space-sm) 1.4rem;
+  scroll-snap-align: start;
+  user-select: none;
+}
+.review-card .reviews-stars { display: block; margin-bottom: 0.8rem; font-size: 0.9rem; }
+.review-card p { color: var(--text-muted); font-size: 0.94rem; margin-bottom: var(--space-sm); }
+.review-author { display: flex; align-items: center; gap: 0.7rem; }
+.review-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--paint-gradient);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem; color: #17130c;
+}
+.review-author span { font-size: 0.85rem; color: var(--text); }
+
+/* ---------- 12. CTA FINAL ---------- */
+.cta-final {
+  text-align: center;
+  padding-block: var(--space-xl);
+  position: relative;
+}
+.cta-final::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(60% 60% at 50% 30%, rgba(232,100,28,0.14), transparent 70%);
+  pointer-events: none;
+}
+.cta-final .section-title { max-width: 16ch; margin-inline: auto; }
+.cta-final .section-lead { margin-inline: auto; text-align: center; }
+.cta-actions { display: flex; justify-content: center; gap: 1rem; margin-top: var(--space-md); flex-wrap: wrap; }
+
+/* ---------- 13. RODAPÉ ---------- */
+.site-footer {
+  position: relative;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--line);
+  padding-block: var(--space-lg) var(--space-md);
+}
+/* Linha em degradê no topo do rodapé — a "corzinha" que diferencia o
+   rodapé do resto do fundo escuro/claro da página, na paleta da marca. */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--paint-gradient);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--space-md);
+}
+.footer-brand .logo { margin-bottom: var(--space-sm); }
+.footer-brand p { color: var(--text-muted); max-width: 36ch; font-size: 0.92rem; }
+
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange-light);
+  margin-bottom: var(--space-sm);
+}
+.footer-col li { margin-bottom: 0.6rem; }
+.footer-col a, .footer-col address {
+  color: var(--text-muted);
+  font-style: normal;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
+}
+.footer-col a:hover { color: var(--orange-light); }
+
+.footer-bottom {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.footer-bottom a { color: var(--text-dim); text-decoration: underline; text-underline-offset: 3px; }
+.footer-bottom a:hover { color: var(--orange-light); }
+
+/* ---------- 14. BOTÕES FLUTUANTES ---------- */
+.floating-actions {
+  position: fixed;
+  right: clamp(0.9rem, 3vw, 1.6rem);
+  bottom: clamp(0.9rem, 3vw, 1.6rem);
+  z-index: 95;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.floating-actions a {
+  position: relative;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  box-shadow: 0 8px 22px -6px rgba(0,0,0,0.55);
+  transition: transform 0.3s var(--ease);
+}
+.floating-actions a:hover { transform: scale(1.08) translateX(-2px); }
+.floating-actions svg { width: 24px; height: 24px; }
+
+.fab-whatsapp { background: #25D366; }
+.fab-instagram {
+  background: radial-gradient(circle at 30% 110%, #ffdb73 0%, #fd5949 30%, #d6249f 55%, #285AEB 90%);
+}
+
+/* Pulso/glow periódico pedido para chamar atenção sem ser irritante:
+   dispara a cada 6s por 1.4s, com pausa longa entre os ciclos. */
+.floating-actions a::before {
+  content: "";
+  position: absolute; inset: -6px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  opacity: 0;
+  animation: fab-pulse 6s ease-out infinite;
+}
+.fab-whatsapp::before { color: #25D366; }
+.fab-instagram::before { color: #d6249f; animation-delay: 0.5s; }
+
+@keyframes fab-pulse {
+  0% { opacity: 0; transform: scale(0.85); }
+  8% { opacity: 0.55; }
+  28% { opacity: 0; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+/* ---------- 15. RESPONSIVO ---------- */
+@media (max-width: 1080px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: span 2; }
+}
+
+@media (max-width: 860px) {
+  .main-nav ul { display: none; }
+  .nav-toggle { display: flex; }
+
+  .about { grid-template-columns: 1fr; }
+  .about-media { order: -1; aspect-ratio: 16/11; }
+
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-item.span-2 { grid-column: span 1; }
+
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-brand { grid-column: span 1; }
+}
+
+@media (max-width: 560px) {
+  .section { padding-block: var(--space-lg); }
+  .services-grid { grid-template-columns: 1fr; }
+  .about-checklist li { font-size: 0.9rem; }
+  .hero-title { max-width: 12ch; }
+  .video-feature { min-height: 70vh; }
+  .video-feature-content { max-width: 100%; }
+  .reviews-head { flex-direction: column; align-items: flex-start; }
+  .floating-actions a { width: 46px; height: 46px; }
+  .floating-actions svg { width: 21px; height: 21px; }
+}
+
+/* ---------- REVEAL ON SCROLL ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+[data-reveal="stagger"] > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+[data-reveal="stagger"].is-visible > * { opacity: 1; transform: translateY(0); }
+[data-reveal="stagger"].is-visible > *:nth-child(1) { transition-delay: 0.05s; }
+[data-reveal="stagger"].is-visible > *:nth-child(2) { transition-delay: 0.12s; }
+[data-reveal="stagger"].is-visible > *:nth-child(3) { transition-delay: 0.19s; }
+[data-reveal="stagger"].is-visible > *:nth-child(4) { transition-delay: 0.26s; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-reveal="stagger"] > * { opacity: 1; transform: none; }
+}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(8, 8, 9, 0.92);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 5vw, 3rem);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.lightbox[hidden] { display: none; }
+.lightbox.is-open { opacity: 1; }
+
+.lightbox figure {
+  max-width: min(1100px, 92vw);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transform: scale(0.96);
+  transition: transform 0.3s var(--ease);
+}
+.lightbox.is-open figure { transform: scale(1); }
+
+.lightbox img {
+  max-height: 78vh;
+  width: auto;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  object-fit: contain;
+}
+.lightbox figcaption {
+  text-align: center;
+  color: var(--media-text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(0.8rem, 3vw, 1.6rem);
+  right: clamp(0.8rem, 3vw, 1.6rem);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: var(--media-text);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.16); transform: rotate(90deg); }
+.lightbox-close svg { width: 20px; height: 20px; }
+
+/* Setas de navegação (foto anterior/próxima) — mesmo estilo do botão de
+   fechar, uma de cada lado, verticalmente centralizadas. */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: var(--media-text);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.lightbox-nav:hover { background: rgba(255,255,255,0.18); }
+.lightbox-nav svg { width: 22px; height: 22px; }
+.lightbox-prev { left: clamp(0.6rem, 3vw, 2rem); }
+.lightbox-prev:hover { transform: translateY(-50%) translateX(-3px); }
+.lightbox-next { right: clamp(0.6rem, 3vw, 2rem); }
+.lightbox-next:hover { transform: translateY(-50%) translateX(3px); }
+.lightbox-nav[hidden] { display: none; }
+
+@media (max-width: 640px) {
+  .lightbox-nav { width: 40px; height: 40px; }
+  .lightbox-nav svg { width: 18px; height: 18px; }
+}
+
+/* ---------- MENU MOBILE ---------- */
+/* Fundo translúcido com blur (efeito "vidro fosco"), seguindo o tema
+   claro/escuro da página — diferente do header, que é sempre escuro. */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: var(--menu-overlay-bg);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md) clamp(1.25rem, 8vw, 3rem) var(--space-lg);
+  transform: translateY(-100%);
+  transition: transform 0.45s var(--ease);
+}
+.mobile-menu.is-open { transform: translateY(0); }
+
+/* Barra do topo dentro do overlay: tema à esquerda, fechar à direita —
+   mesmo padrão de agrupamento usado no header principal. */
+.mobile-menu-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+.mobile-menu-close {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.mobile-menu-close:hover { background: var(--line); transform: rotate(90deg); }
+.mobile-menu-close svg { width: 18px; height: 18px; }
+.mobile-menu-top .theme-toggle { border: 1px solid var(--line-strong); }
+
+.mobile-menu nav { display: flex; flex-direction: column; justify-content: center; flex: 1; }
+
+/* Links organizados: número + texto, com divisórias sutis entre eles —
+   substitui o bloco de texto grande e "solto" que tinha antes. */
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+}
+.mobile-menu li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  padding-block: 0.85rem;
+  border-bottom: 1px solid var(--line);
+}
+.mobile-menu li:first-child { border-top: 1px solid var(--line); }
+.mobile-menu-index {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--orange-light);
+  letter-spacing: 0.05em;
+}
+.mobile-menu ul a {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 6vw, 1.8rem);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.mobile-menu .btn-primary { margin-top: var(--space-md); width: fit-content; }
+.mobile-menu-footer {
+  margin-top: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Trava o scroll do body quando o menu mobile está aberto */
+body.menu-open { overflow: hidden; }
