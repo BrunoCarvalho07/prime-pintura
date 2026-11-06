@@ -1,0 +1,671 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" x-data="ppApp()" :data-theme="theme" @keydown.escape.window="closeMenu()">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQV42GDEM2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CQV42GDEM2');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <script>
+    (function () {
+      var stored = localStorage.getItem("pp-theme");
+      var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.setAttribute("data-theme", stored || (prefersLight ? "light" : "dark"));
+    })();
+
+    function ppApp() {
+      return {
+        theme: document.documentElement.getAttribute("data-theme"),
+        menuOpen: false,
+        toggleTheme() {
+          this.theme = this.theme === "light" ? "dark" : "light";
+          localStorage.setItem("pp-theme", this.theme);
+        },
+        openMenu() {
+          this.menuOpen = true;
+          document.body.classList.add("menu-open");
+        },
+        closeMenu() {
+          this.menuOpen = false;
+          document.body.classList.remove("menu-open");
+        },
+      };
+    }
+  </script>
+  <script defer src="js/vendor/alpine-3.14.1.min.js"></script>
+
+  <!-- ===================== SEO METADATA ===================== -->
+  <title>Pintura Residencial em SP | Prime Pintura</title>
+  <meta name="description" content="Pintura residencial em SP para casas e apartamentos. Acabamento fino, proteção total e entrega rápida para imobiliária. Orçamento no WhatsApp!" />
+  <meta name="keywords" content="pintura residencial sp, pintor de casas sp, pintura apartamento são paulo, pintura para entrega imobiliária, pintor residencial são paulo" />
+  <meta name="author" content="Prime Pintura" />
+  <link rel="canonical" href="https://pinturaprime.com.br/pintura-residencial-sp" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Prime Pintura" />
+  <meta property="og:title" content="Pintura Residencial em SP | Casas e Apartamentos | Prime Pintura" />
+  <meta property="og:description" content="Pintura residencial premium em São Paulo. Especialistas em casas, apartamentos e entrega para imobiliárias com proteção total de piso e móveis." />
+  <meta property="og:url" content="https://pinturaprime.com.br/pintura-residencial-sp" />
+  <meta property="og:image" content="https://pinturaprime.com.br/assets/img/og-cover.jpg" />
+
+  <meta name="theme-color" content="#0e0e10" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="flandao/flandao-widget.css" />
+  <link rel="icon" type="image/jpeg" href="assets/logo/loading-logo.jpg" sizes="520x520" />
+  <link rel="apple-touch-icon" href="assets/logo/loading-logo.jpg" />
+
+  <!-- ===================== SCHEMA DADOS ESTRUTURADOS: LocalBusiness ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Prime Pintura - Pintura Residencial em São Paulo",
+    "image": "https://pinturaprime.com.br/assets/img/og-cover.jpg",
+    "url": "https://pinturaprime.com.br/pintura-residencial-sp",
+    "telephone": "+5511913415626",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Evans",
+      "addressLocality": "Vila Esperança, São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "03648-020",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -23.5269036,
+      "longitude": -46.5252139
+    },
+    "areaServed": [
+      { "@type": "City", "name": "São Paulo" },
+      { "@type": "Place", "name": "Vila Esperança" },
+      { "@type": "Place", "name": "Penha" },
+      { "@type": "Place", "name": "Tatuapé" },
+      { "@type": "Place", "name": "Mooca" }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "18"
+    }
+  }
+  </script>
+
+  <!-- ===================== SCHEMA DADOS ESTRUTURADOS: FAQPage ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Como funciona o serviço de pintura para devolução de imóvel à imobiliária?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Executamos a pintura seguindo exatamente o laudo de vistoria inicial exigido pela imobiliária. Corrigimos furos de buchas, manchas, trincas e aplicamos a tinta padrão (branco neve, gelo ou palha) com cobertura perfeita para garantir a liberação da sua caução sem dores de cabeça."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês protegem os móveis e pisos durante a pintura do apartamento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! Nosso compromisso número um é o isolamento completo. Cobrimos todo o piso com papel kraft espesso e fita crepe de alta fixação, isolamos os móveis com lona e plástico bolha, e protegemos tomadas, interruptores, rodapés e esquadrias de portas e janelas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quanto tempo demora a pintura de um apartamento padrão em São Paulo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Um apartamento de 50m² a 70m² leva em média de 3 a 5 dias úteis com preparação completa (massa corrida, lixamento sem poeira excessiva e demãos de tinta). Combinamos o cronograma exato antes de iniciar a obra."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A Prime Pintura fornece a tinta ou apenas a mão de obra?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oferecemos ambas as modalidades. Podemos orçar apenas a mão de obra profissional especializada com ferramentas de ponta ou incluir todo o material de marcas de primeira linha como Suvinil, Coral e Sherwin-Williams."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como solicito um orçamento para pintura residencial?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Basta clicar nos botões de WhatsApp do site, enviar fotos ou vídeos do seu imóvel e as medidas aproximadas. Respondemos no mesmo dia com uma estimativa clara e sem compromisso."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="assets/logo/logo-light.png" alt="Prime Pintura" class="logo-img" /></a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li class="has-dropdown">
+            <a href="index.html#servicos" class="active">
+              <span>Serviços</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+              <li><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+              <li><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+              <li><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#galeria">Fotos</a></li>
+          <li><a href="index.html#avaliacoes">Avaliações</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Abrir menu" @click="openMenu()" :aria-expanded="menuOpen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MENU MOBILE ===================== -->
+  <div class="mobile-menu" :class="{ 'is-open': menuOpen }">
+    <div class="mobile-menu-top">
+      <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <button type="button" class="mobile-menu-close" aria-label="Fechar menu" @click="closeMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+      </button>
+    </div>
+
+    <nav aria-label="Navegação mobile" @click="closeMenu()">
+      <ul>
+        <li><span class="mobile-menu-index">01</span><a href="index.html">Página Inicial</a></li>
+        <li><span class="mobile-menu-index">02</span><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+        <li><span class="mobile-menu-index">03</span><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+        <li><span class="mobile-menu-index">04</span><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+        <li><span class="mobile-menu-index">05</span><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
+        <li><span class="mobile-menu-index">06</span><a href="index.html#galeria">Fotos</a></li>
+        <li><span class="mobile-menu-index">07</span><a href="index.html#avaliacoes">Avaliações</a></li>
+        <li><span class="mobile-menu-index">08</span><a href="index.html#contato">Contato</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20pintura%20residencial." class="btn btn-primary btn-sm btn-icon" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+          <span>Solicite orçamento</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="conteudo">
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <div class="breadcrumbs">
+            <a href="index.html">Home</a> <span>/</span> <span>Pintura Residencial em SP</span>
+          </div>
+          <p class="eyebrow">Pintura Residencial Profissional</p>
+          <h1 class="page-title">Pintura Residencial em São Paulo com Acabamento Fino e Sem Bagunça</h1>
+          <p class="page-lead">Renove sua casa ou apartamento com tranquilidade total. Protegemos cada centímetro do seu piso e mobília, respeitamos prazos à risca e entregamos seu imóvel aprovado em vistorias imobiliárias.</p>
+          
+          <div class="page-hero-actions">
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20pintura%20residencial%20em%20SP." class="btn btn-primary" target="_blank" rel="noopener">Orçamento Rápido no WhatsApp</a>
+            <a href="#processo" class="btn btn-outline">Conheça o processo</a>
+          </div>
+
+          <div class="badges-row">
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Proteção de Móveis & Pisos
+            </span>
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Pontualidade Garantida
+            </span>
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              100% Aprovado em Vistoria
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 1: NOSSAS ESPECIALIDADES RESIDENCIAIS ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Soluções Sob Medida</p>
+          <h2 class="section-title">O Que Pintamos em Sua Residência</h2>
+          <p class="section-lead">Atendemos desde pequenos reparos até projetos residenciais completos em São Paulo e região metropolitana.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <span class="service-index">01</span>
+              <h3>Apartamentos Habitados ou Vazios</h3>
+              <p>Se você já mora no local, cobrimos cada móvel com plástico e papel kraft especial, trabalhando com tintas com baixíssimo odor para seu conforto e bem-estar.</p>
+            </div>
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%20pintar%20meu%20apartamento." class="service-link" target="_blank" rel="noopener">
+              <span>Orçar Apartamento</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-index">02</span>
+              <h3>Casas e Sobrados Completos</h3>
+              <p>Pintura de áreas internas (salas, quartos, cozinhas, corredores) e áreas externas, incluindo muros, fachadas, beirais e garagens com tintas acrílicas laváveis e resistentes a intempéries.</p>
+            </div>
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%20casa%20ou%20sobrado." class="service-link" target="_blank" rel="noopener">
+              <span>Orçar Casa / Sobrado</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-index">03</span>
+              <h3>Devolução para Imobiliária</h3>
+              <p>Precisa devolver as chaves sem estresse? Tapamos todos os buracos, removemos manchas de umidade e deixamos as paredes exatamente no padrão original exigido no contrato de locação.</p>
+            </div>
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Preciso%20de%20pintura%20para%20devolu%C3%A7%C3%A3o%20de%20im%C3%B3vel." class="service-link" target="_blank" rel="noopener">
+              <span>Entrega de Chaves</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 2: DIFERENCIAIS E CUIDADOS TÉCNICOS ===================== -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <p class="eyebrow">Nosso Padrão de Qualidade</p>
+            <h2 class="section-title">O Cuidado Que Sua Casa Merece</h2>
+            <p class="section-lead">A maior preocupação de quem contrata um pintor é a sujeira e os danos colaterais. Na Prime Pintura, tratamos o seu patrimônio com rigor cirúrgico.</p>
+            
+            <ul class="about-checklist">
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Isolamento com Papel Kraft e Fita Crepe Especial:</strong>
+                  <span>Nenhum pingo de tinta no seu piso laminado, porcelanato ou rodapé.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Envelopamento Completo de Móveis:</strong>
+                  <span>Armários embutidos, sofás e camas ficam 100% blindados contra pó e respingos.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Limpeza Fina Pós-Obra:</strong>
+                  <span>Retiramos todas as proteções, aspiramos o pó e deixamos os cômodos prontos para você aproveitar.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="about-image-wrap">
+            <picture><source srcset="assets/gallery/foto1.webp" type="image/webp" /><img src="assets/gallery/foto1.jpg" alt="Pintura residencial em quarto de apartamento com acabamento fosco impecável em São Paulo" loading="lazy" width="900" height="900" /></picture>
+            <div class="badge-experience">
+              <span class="num">100%</span>
+              <span class="lbl">Foco em limpeza e proteção</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 3: PROCESSO TÉCNICO PASSO A PASSO ===================== -->
+    <section class="section" id="processo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Engenharia da Pintura</p>
+          <h2 class="section-title">Nosso Processo Técnico de Aplicação</h2>
+          <p class="section-lead">Uma pintura durável e sem bolhas não nasce na tinta: nasce no preparo minucioso de cada metro quadrado.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step-card">
+            <span class="process-step-num">01</span>
+            <h3>Proteção & Isolamento</h3>
+            <p>Vedação integral de pisos com papelão ondulado/kraft, envelopamento de móveis com lona plástica e proteção de espelhos elétricos e fechaduras.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">02</span>
+            <h3>Correção & Tratamento</h3>
+            <p>Raspagem de partes soltas, tratamento de trincas estruturais com fita telada e aplicação de fundo preparador ou selador contra umidade.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">03</span>
+            <h3>Emassamento & Nivelamento</h3>
+            <p>Aplicação de massa corrida PVA em ambientes secos ou massa acrílica em áreas úmidas, garantindo planicidade milimétrica.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">04</span>
+            <h3>Lixamento Uniforme</h3>
+            <p>Lixamento com lixas de granulação progressiva para eliminar qualquer imperfeição e conferir o toque aveludado à superfície.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">05</span>
+            <h3>Demãos de Tinta Premium</h3>
+            <p>Aplicação de 2 a 3 demãos de tinta acrílica acetinada, fosca ou semibrilho das melhores marcas, com recorte manual perfeito.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 4: GALERIA LOCAL COM LIGHTBOX ===================== -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Nosso Portfólio Residencial</p>
+          <h2 class="section-title">Resultados Reais em Lares Paulistanos</h2>
+          <p class="section-lead">Confira fotos reais de obras executadas pela equipe da Prime Pintura em São Paulo.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto1.jpg" data-caption="Pintura residencial em quarto de apartamento na Vila Esperança São Paulo">
+            <picture><source srcset="assets/gallery/foto1.webp" type="image/webp" /><img src="assets/gallery/foto1.jpg" alt="Pintura residencial em quarto de apartamento na Vila Esperança São Paulo" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Quarto · acabamento aveludado</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto3.jpg" data-caption="Pintura de sala de estar e varanda integrada em apartamento no Tatuapé São Paulo">
+            <picture><source srcset="assets/gallery/foto3.webp" type="image/webp" /><img src="assets/gallery/foto3.jpg" alt="Pintura de sala de estar e varanda integrada em apartamento no Tatuapé São Paulo" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Sala · integração varanda</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto5.jpg" data-caption="Acabamento de sanca de gesso e pintura de teto em residência na Penha SP">
+            <picture><source srcset="assets/gallery/foto5.webp" type="image/webp" /><img src="assets/gallery/foto5.jpg" alt="Acabamento de sanca de gesso e pintura de teto em residência na Penha SP" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Sanca de gesso · iluminação</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto7.jpg" data-caption="Pintura de fachada residencial em sobrado na Zona Leste de São Paulo">
+            <picture><source srcset="assets/gallery/foto7.webp" type="image/webp" /><img src="assets/gallery/foto7.jpg" alt="Pintura de fachada residencial em sobrado na Zona Leste de São Paulo" loading="lazy" width="720" height="1282" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Residencial</span>
+              <strong>Fachada · sobrado ZL</strong>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 5: PROVA SOCIAL / AVALIAÇÕES ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="reviews-head">
+          <div>
+            <p class="eyebrow">Satisfação Comprovada</p>
+            <h2 class="section-title">Avaliações 5 Estrelas no Google</h2>
+          </div>
+          <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="reviews-score" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <span class="num">5.0</span>
+            <div>
+              <span class="reviews-stars">★★★★★</span>
+              <div class="stat-label">18 avaliações no Google ↗</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="reviews-track" tabindex="0" aria-label="Avaliações de clientes">
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Contratei antes de me mudar para o apartamento novo em São Paulo — serviço nota 1000, superou a expectativa. Pintura limpa e sem respingos.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Precisava devolver o apartamento pra imobiliária rápido — serviço ágil, com qualidade e preço justo. Aprovado na vistoria de primeira!</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Pintaram meu apartamento inteiro, acabamento impecável e preço bem acessível. Profissionais muito educados e pontuais.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 6: FAQ ACCORDION ===================== -->
+    
+    <!-- ===================== GRANDE SÃO PAULO ===================== -->
+    <section class="section grande-sp-section" aria-label="Área de atendimento Grande São Paulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Cobertura Regional</p>
+          <h2 class="section-title">Atendemos Toda a Grande São Paulo</h2>
+          <p class="section-lead">Da capital às cidades da região metropolitana — levamos qualidade, pontualidade e cuidado até você.</p>
+        </div>
+        <div class="bairros-grid" role="list">
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Paulo</strong><span>Capital e todos os bairros</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Guarulhos</strong><span>Região Norte</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Osasco</strong><span>Região Oeste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Santo André</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Bernardo do Campo</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Caetano do Sul</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mauá</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Diadema</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mogi das Cruzes</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Suzano</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Ribeirão Pires</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Itaquaquecetuba</strong><span>Região Leste</span></div>
+        </div>
+        <p style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:.9rem;">Não encontrou sua cidade? <a href="https://wa.me/5511913415626?text=Olá!%20Gostaria%20de%20verificar%20se%20vocês%20atendem%20minha%20cidade." target="_blank" rel="noopener" style="color:var(--accent);">Fale conosco no WhatsApp</a> — atendemos toda a região metropolitana.</p>
+      </div>
+    </section>
+    <section class="section faq-section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Dúvidas Frequentes</p>
+          <h2 class="section-title">Perguntas sobre Pintura Residencial</h2>
+          <p class="section-lead">Tudo o que você precisa saber antes de iniciar a pintura do seu imóvel em SP.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Como funciona o serviço de pintura para devolução de imóvel à imobiliária?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Executamos a pintura seguindo exatamente o laudo de vistoria inicial exigido pela imobiliária. Corrigimos furos de buchas, manchas, trincas e aplicamos a tinta padrão (branco neve, gelo ou palha) com cobertura perfeita para garantir a liberação da sua caução sem dores de cabeça.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Vocês protegem os móveis e pisos durante a pintura do apartamento?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Sim! Nosso compromisso número um é o isolamento completo. Cobrimos todo o piso com papel kraft espesso e fita crepe de alta fixação, isolamos os móveis com lona e plástico bolha, e protegemos tomadas, interruptores, rodapés e esquadrias de portas e janelas.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Quanto tempo demora a pintura de um apartamento padrão em São Paulo?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Um apartamento de 50m² a 70m² leva em média de 3 a 5 dias úteis com preparação completa (massa corrida, lixamento sem poeira excessiva e demãos de tinta). Combinamos o cronograma exato antes de iniciar a obra.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>A Prime Pintura fornece a tinta ou apenas a mão de obra?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Oferecemos ambas as modalidades. Podemos orçar apenas a mão de obra profissional especializada com ferramentas de ponta ou incluir todo o material de marcas de primeira linha como Suvinil, Coral e Sherwin-Williams.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Como solicito um orçamento para pintura residencial?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Basta clicar nos botões de WhatsApp do site, enviar fotos ou vídeos do seu imóvel e as medidas aproximadas. Respondemos no mesmo dia com uma estimativa clara e sem compromisso.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="section" id="contato" style="text-align: center;">
+      <div class="container">
+        <div style="max-width: 680px; margin: 0 auto;">
+          <p class="eyebrow" style="justify-content:center;">Atendimento Imediato</p>
+          <h2 class="section-title">Pronto para dar vida nova à sua casa?</h2>
+          <p class="section-lead">Receba um orçamento detalhado e sem compromisso direto no WhatsApp da Prime Pintura.</p>
+          <div class="cta-actions">
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20pintura%20residencial." class="btn btn-primary" target="_blank" rel="noopener">Chamar no WhatsApp Agora</a>
+            <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="btn btn-outline" target="_blank" rel="noopener">Ver no Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><img src="assets/logo/logo.png" alt="Prime Pintura" class="logo-img" /></a>
+          <p>Pintura residencial e comercial em São Paulo. Preparo correto, tinta de qualidade e acabamento que dura.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Páginas & Especialidades</h4>
+          <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="pintura-residencial-sp.html">Pintura Residencial SP</a></li>
+            <li><a href="pintura-comercial-sp.html">Pintura Comercial SP</a></li>
+            <li><a href="texturas-e-efeitos.html">Texturas e Efeitos Especiais</a></li>
+            <li><a href="pintor-zona-leste-sp.html">Pintor na Zona Leste SP</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato & Localização</h4>
+          <ul>
+            <li><address>Rua Evans, Vila Esperança<br />São Paulo - SP, 03648-020</address></li>
+            <li><a href="tel:+5511913415626">(11) 91341-5626</a></li>
+            <li><a href="https://wa.me/5511913415626" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="current-year"></span> Prime Pintura. Todos os direitos reservados.</span>
+        <span>Desenvolvido com foco em alta performance e SEO Local.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== BOTÕES FLUTUANTES ===================== -->
+  <div class="floating-actions">
+    <a class="fab-whatsapp" href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20pintura%20residencial." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+    </a>
+    <a class="fab-instagram" href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener" aria-label="Ver Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    </a>
+  </div>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de foto ampliada" hidden>
+    <button type="button" class="lightbox-close" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5 8 12l7 7"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="Próxima foto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <figure>
+      <img id="lightbox-img" src="" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="flandao/flandao-widget.js" defer></script>
+</body>
+</html>
+
+
+

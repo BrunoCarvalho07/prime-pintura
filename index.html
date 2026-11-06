@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR" x-data="ppApp()" :data-theme="theme" @keydown.escape.window="closeMenu()">
 <head>
   <meta charset="UTF-8" />
@@ -188,7 +188,18 @@
       <nav class="main-nav" aria-label="Navegação principal">
         <ul>
           <li><a href="#sobre">Quem somos</a></li>
-          <li><a href="#servicos">Serviços</a></li>
+          <li class="has-dropdown">
+            <a href="#servicos">
+              <span>Serviços</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="pintura-residencial-sp.html">Pintura Residencial SP</a></li>
+              <li><a href="pintura-comercial-sp.html">Pintura Comercial SP</a></li>
+              <li><a href="texturas-e-efeitos.html">Texturas & Efeitos (Cimento Queimado)</a></li>
+              <li><a href="pintor-zona-leste-sp.html">Pintor na Zona Leste SP</a></li>
+            </ul>
+          </li>
           <li><a href="#galeria">Fotos</a></li>
           <li><a href="#avaliacoes">Avaliações</a></li>
           <li><a href="#contato">Contato</a></li>
@@ -228,9 +239,13 @@
       <ul>
         <li><span class="mobile-menu-index">01</span><a href="#sobre">Quem somos</a></li>
         <li><span class="mobile-menu-index">02</span><a href="#servicos">Serviços</a></li>
-        <li><span class="mobile-menu-index">03</span><a href="#galeria">Fotos</a></li>
-        <li><span class="mobile-menu-index">04</span><a href="#avaliacoes">Avaliações</a></li>
-        <li><span class="mobile-menu-index">05</span><a href="#contato">Contato</a></li>
+        <li><span class="mobile-menu-index">03</span><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+        <li><span class="mobile-menu-index">04</span><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+        <li><span class="mobile-menu-index">05</span><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+        <li><span class="mobile-menu-index">06</span><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
+        <li><span class="mobile-menu-index">07</span><a href="#galeria">Fotos</a></li>
+        <li><span class="mobile-menu-index">08</span><a href="#avaliacoes">Avaliações</a></li>
+        <li><span class="mobile-menu-index">09</span><a href="#contato">Contato</a></li>
       </ul>
       <div class="mobile-menu-footer">
         <!-- Link direto para o WhatsApp comercial com mensagem predefinida -->
@@ -290,10 +305,7 @@
     <section class="section" id="sobre">
       <div class="container about" data-reveal>
         <div class="about-media">
-          <picture>
-            <source srcset="assets/gallery/foto5.webp" type="image/webp" />
-            <img src="assets/gallery/foto5.jpg" alt="Detalhe de sanca de gesso com iluminação embutida, um dos projetos da Prime Pintura" loading="lazy" width="900" height="900" />
-          </picture>
+          <picture><source srcset="assets/gallery/foto5.webp" type="image/webp" /><img src="assets/gallery/foto5.jpg" alt="Detalhe de sanca de gesso com iluminação embutida, um dos projetos da Prime Pintura" loading="lazy" width="900" height="900" /></picture>
           <span class="about-media-tag">Prime Pintura · Guilhermina e toda São Paulo</span>
         </div>
 
@@ -349,31 +361,55 @@
 
         <div class="services-grid" data-reveal="stagger">
           <article class="service-card">
-            <span class="service-index">01</span>
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg>
-            <h3>Pintura residencial</h3>
-            <p>Apartamentos, casas e condomínios — cômodo a cômodo ou obra completa. Preparo de superfície, tratamento de trincas e proteção total de piso e móveis inclusos.</p>
+            <div>
+              <span class="service-index">01</span>
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg>
+              <h3>Pintura residencial</h3>
+              <p>Apartamentos, casas e condomínios — cômodo a cômodo ou obra completa. Preparo de superfície, tratamento de trincas e proteção total de piso e móveis inclusos.</p>
+            </div>
+            <a href="pintura-residencial-sp.html" class="service-link">
+              <span>Ver detalhes e preços</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
           </article>
 
           <article class="service-card">
-            <span class="service-index">02</span>
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M6 21V7l6-4 6 4v14M10 21v-5h4v5M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>
-            <h3>Pintura comercial</h3>
-            <p>Lojas, escritórios, fachadas e prédios comerciais, com cronograma flexível — inclusive fora do horário de funcionamento — para não parar o seu negócio.</p>
+            <div>
+              <span class="service-index">02</span>
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21h18M6 21V7l6-4 6 4v14M10 21v-5h4v5M9 10h.01M15 10h.01M9 14h.01M15 14h.01"/></svg>
+              <h3>Pintura comercial</h3>
+              <p>Lojas, escritórios, fachadas e prédios comerciais, com cronograma flexível — inclusive fora do horário de funcionamento — para não parar o seu negócio.</p>
+            </div>
+            <a href="pintura-comercial-sp.html" class="service-link">
+              <span>Pintura comercial & turnos</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
           </article>
 
           <article class="service-card">
-            <span class="service-index">03</span>
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M4 12h16M12 4v16" stroke-dasharray="1 3"/></svg>
-            <h3>Texturas</h3>
-            <p>Grafiatos, texturas acrílicas e efeitos decorativos para dar personalidade a uma parede de destaque.</p>
+            <div>
+              <span class="service-index">03</span>
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v16H4z"/><path d="M4 12h16M12 4v16" stroke-dasharray="1 3"/></svg>
+              <h3>Texturas & Efeitos</h3>
+              <p>Cimento queimado, marmorato espelhado e grafiatos com textura mineral hidro-repelente para valorizar ambientes nobres.</p>
+            </div>
+            <a href="texturas-e-efeitos.html" class="service-link">
+              <span>Cimento queimado & efeitos</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
           </article>
 
           <article class="service-card">
-            <span class="service-index">04</span>
-            <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.2L12 16.4 5.7 20.8 8 13.6 2 9.2h7.6z"/></svg>
-            <h3>Fino acabamento</h3>
-            <p>Laca, esmalte sintético em portas e batentes, e todo detalhe que separa um serviço bom de um impecável.</p>
+            <div>
+              <span class="service-index">04</span>
+              <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <h3>Zona Leste de SP</h3>
+              <p>Atendimento regional ágil na Vila Esperança, Penha, Tatuapé, Mooca e Anália Franco, com visita técnica sem custo e nota 5.0 no Google.</p>
+            </div>
+            <a href="pintor-zona-leste-sp.html" class="service-link">
+              <span>Pintor na Zona Leste</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
           </article>
         </div>
       </div>
@@ -426,10 +462,7 @@
 
         <div class="gallery-grid" data-reveal="stagger">
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto2.jpg" data-caption="Residencial — Sala · parede decorativa">
-            <picture>
-              <source srcset="assets/gallery/foto2.webp" type="image/webp" />
-              <img src="assets/gallery/foto2.jpg" alt="Sala de estar com parede decorativa marmorizada pintada pela Prime Pintura" loading="lazy" width="900" height="900" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto2.webp" type="image/webp" /><img src="assets/gallery/foto2.jpg" alt="Sala de estar com parede decorativa marmorizada pintada pela Prime Pintura" loading="lazy" width="900" height="900" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -437,10 +470,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto1.jpg" data-caption="Residencial — Quarto · acabamento fosco">
-            <picture>
-              <source srcset="assets/gallery/foto1.webp" type="image/webp" />
-              <img src="assets/gallery/foto1.jpg" alt="Quarto recém pintado em tom neutro, acabamento fosco" loading="lazy" width="900" height="900" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto1.webp" type="image/webp" /><img src="assets/gallery/foto1.jpg" alt="Quarto recém pintado em tom neutro, acabamento fosco" loading="lazy" width="900" height="900" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -448,10 +478,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto3.jpg" data-caption="Residencial — Sala · integração com varanda">
-            <picture>
-              <source srcset="assets/gallery/foto3.webp" type="image/webp" />
-              <img src="assets/gallery/foto3.jpg" alt="Sala de estar integrada com varanda, piso de madeira e parede decorativa" loading="lazy" width="900" height="900" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto3.webp" type="image/webp" /><img src="assets/gallery/foto3.jpg" alt="Sala de estar integrada com varanda, piso de madeira e parede decorativa" loading="lazy" width="900" height="900" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -459,10 +486,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto5.jpg" data-caption="Residencial — Sanca · iluminação embutida">
-            <picture>
-              <source srcset="assets/gallery/foto5.webp" type="image/webp" />
-              <img src="assets/gallery/foto5.jpg" alt="Sanca de gesso com iluminação embutida em apartamento" loading="lazy" width="900" height="900" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto5.webp" type="image/webp" /><img src="assets/gallery/foto5.jpg" alt="Sanca de gesso com iluminação embutida em apartamento" loading="lazy" width="900" height="900" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow"> Residencial</span>
@@ -470,10 +494,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item span-2" data-lightbox="assets/gallery/foto4.jpg" data-caption="Residencial — Fachada · sobrado completo">
-            <picture>
-              <source srcset="assets/gallery/foto4.webp" type="image/webp" />
-              <img src="assets/gallery/foto4.jpg" alt="Fachada de sobrado em fase final de acabamento" loading="lazy" width="900" height="900" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto4.webp" type="image/webp" /><img src="assets/gallery/foto4.jpg" alt="Fachada de sobrado em fase final de acabamento" loading="lazy" width="900" height="900" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -482,10 +503,7 @@
           </button>
           
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto6.jpg" data-caption="Comercial — Fachada · prédio comercial">
-            <picture>
-              <source srcset="assets/gallery/foto6.webp" type="image/webp" />
-              <img src="assets/gallery/foto6.jpg" alt="Fachada de prédio comercial pintada pela Prime Pintura" loading="lazy" width="756" height="1600" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto6.webp" type="image/webp" /><img src="assets/gallery/foto6.jpg" alt="Fachada de prédio comercial pintada pela Prime Pintura" loading="lazy" width="756" height="1600" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Comercial</span>
@@ -493,10 +511,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto7.jpg" data-caption="Residencial — condomínio · com acabamento">
-            <picture>
-              <source srcset="assets/gallery/foto7.webp" type="image/webp" />
-              <img src="assets/gallery/foto7.jpg" alt="Fachada residencial em tom bege com detalhes em pedra e portão de ferro pintados pela Prime Pintura" loading="lazy" width="720" height="1282" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto7.webp" type="image/webp" /><img src="assets/gallery/foto7.jpg" alt="Fachada residencial em tom bege com detalhes em pedra e portão de ferro pintados pela Prime Pintura" loading="lazy" width="720" height="1282" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -504,10 +519,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto9.jpg" data-caption="Residencial — Quarto · Cada detalhe feito com carinho">
-            <picture>
-              <source srcset="assets/gallery/foto9.webp" type="image/webp" />
-              <img src="assets/gallery/foto9.jpg" alt="Quarto com parede em revestimento cinza e iluminação embutida no teto, obra da Prime Pintura" loading="lazy" width="756" height="1600" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto9.webp" type="image/webp" /><img src="assets/gallery/foto9.jpg" alt="Quarto com parede em revestimento cinza e iluminação embutida no teto, obra da Prime Pintura" loading="lazy" width="756" height="1600" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -515,10 +527,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item span-2" data-lightbox="assets/gallery/foto10.jpg" data-caption="Residencial — Fachada · pintura em execução">
-            <picture>
-              <source srcset="assets/gallery/foto10.webp" type="image/webp" />
-              <img src="assets/gallery/foto10.jpg" alt="Pintor da Prime Pintura aplicando tinta em portão de fachada residencial verde" loading="lazy" width="720" height="1282" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto10.webp" type="image/webp" /><img src="assets/gallery/foto10.jpg" alt="Pintor da Prime Pintura aplicando tinta em portão de fachada residencial verde" loading="lazy" width="720" height="1282" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -526,10 +535,7 @@
             </span>
           </button>
           <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto11.jpg" data-caption="Residencial — Fachada · sobrado geminado">
-            <picture>
-              <source srcset="assets/gallery/foto11.webp" type="image/webp" />
-              <img src="assets/gallery/foto11.jpg" alt="Fachada de sobrado geminado em tom cinza claro pintada pela Prime Pintura" loading="lazy" width="721" height="1600" />
-            </picture>
+            <picture><source srcset="assets/gallery/foto11.webp" type="image/webp" /><img src="assets/gallery/foto11.jpg" alt="Fachada de sobrado geminado em tom cinza claro pintada pela Prime Pintura" loading="lazy" width="721" height="1600" /></picture>
             <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
             <span class="gallery-caption">
               <span class="eyebrow">Residencial</span>
@@ -628,7 +634,31 @@
         </div>
       </div>
     </section>
-
+    <!-- ===================== GRANDE SÃO PAULO ===================== -->
+    <section class="section grande-sp-section" aria-label="Área de atendimento Grande São Paulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Cobertura Regional</p>
+          <h2 class="section-title">Atendemos Toda a Grande São Paulo</h2>
+          <p class="section-lead">Da capital às cidades da região metropolitana — levamos qualidade, pontualidade e cuidado até você.</p>
+        </div>
+        <div class="bairros-grid" role="list">
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Paulo</strong><span>Capital e todos os bairros</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Guarulhos</strong><span>Região Norte</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Osasco</strong><span>Região Oeste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Santo André</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Bernardo do Campo</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Caetano do Sul</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mauá</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Diadema</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mogi das Cruzes</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Suzano</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Ribeirão Pires</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Itaquaquecetuba</strong><span>Região Leste</span></div>
+        </div>
+        <p style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:.9rem;">Não encontrou sua cidade? <a href="https://wa.me/5511913415626?text=Olá!%20Gostaria%20de%20verificar%20se%20vocês%20atendem%20minha%20cidade." target="_blank" rel="noopener" style="color:var(--accent);">Fale conosco no WhatsApp</a> — atendemos toda a região metropolitana.</p>
+      </div>
+    </section>
     <!-- ===================== CTA FINAL ===================== -->
     <section class="cta-final" id="contato">
       <div class="container">
@@ -662,6 +692,10 @@
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#galeria">Fotos</a></li>
             <li><a href="#avaliacoes">Avaliações</a></li>
+            <li><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+            <li><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+            <li><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+            <li><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
           </ul>
         </div>
 
@@ -715,3 +749,7 @@
   <script src="flandao/flandao-widget.js" defer></script>
 </body>
 </html>
+
+
+
+

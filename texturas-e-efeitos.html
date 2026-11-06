@@ -1,0 +1,671 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" x-data="ppApp()" :data-theme="theme" @keydown.escape.window="closeMenu()">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQV42GDEM2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CQV42GDEM2');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <script>
+    (function () {
+      var stored = localStorage.getItem("pp-theme");
+      var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.setAttribute("data-theme", stored || (prefersLight ? "light" : "dark"));
+    })();
+
+    function ppApp() {
+      return {
+        theme: document.documentElement.getAttribute("data-theme"),
+        menuOpen: false,
+        toggleTheme() {
+          this.theme = this.theme === "light" ? "dark" : "light";
+          localStorage.setItem("pp-theme", this.theme);
+        },
+        openMenu() {
+          this.menuOpen = true;
+          document.body.classList.add("menu-open");
+        },
+        closeMenu() {
+          this.menuOpen = false;
+          document.body.classList.remove("menu-open");
+        },
+      };
+    }
+  </script>
+  <script defer src="js/vendor/alpine-3.14.1.min.js"></script>
+
+  <!-- ===================== SEO METADATA ===================== -->
+  <title>Texturas e Efeitos em SP | Prime Pintura</title>
+  <meta name="description" content="Aplicação de cimento queimado, efeito marmorizado e grafiato em SP. Parede decorativa com acabamento nobre e sofisticado. Orçamento no WhatsApp!" />
+  <meta name="keywords" content="cimento queimado são paulo, efeito marmorizado sp, aplicação de grafiato são paulo, textura de parede sp, pintura decorativa são paulo" />
+  <meta name="author" content="Prime Pintura" />
+  <link rel="canonical" href="https://pinturaprime.com.br/texturas-e-efeitos" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Prime Pintura" />
+  <meta property="og:title" content="Texturas e Efeitos em SP | Cimento Queimado e Mármore | Prime Pintura" />
+  <meta property="og:description" content="Especialistas em texturas decorativas modernas: cimento queimado rústico/aveludado, mármore polido e grafiato impermeável em São Paulo." />
+  <meta property="og:url" content="https://pinturaprime.com.br/texturas-e-efeitos" />
+  <meta property="og:image" content="https://pinturaprime.com.br/assets/img/og-cover.jpg" />
+
+  <meta name="theme-color" content="#0e0e10" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="flandao/flandao-widget.css" />
+  <link rel="icon" type="image/jpeg" href="assets/logo/loading-logo.jpg" sizes="520x520" />
+  <link rel="apple-touch-icon" href="assets/logo/loading-logo.jpg" />
+
+  <!-- ===================== SCHEMA DADOS ESTRUTURADOS: LocalBusiness ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Prime Pintura - Texturas e Efeitos Especiais",
+    "image": "https://pinturaprime.com.br/assets/img/og-cover.jpg",
+    "url": "https://pinturaprime.com.br/texturas-e-efeitos",
+    "telephone": "+5511913415626",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Evans",
+      "addressLocality": "Vila Esperança, São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "03648-020",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -23.5269036,
+      "longitude": -46.5252139
+    },
+    "areaServed": [
+      { "@type": "City", "name": "São Paulo" },
+      { "@type": "Place", "name": "Zona Leste" },
+      { "@type": "Place", "name": "Tatuapé" },
+      { "@type": "Place", "name": "Anália Franco" },
+      { "@type": "Place", "name": "Mooca" }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "18"
+    }
+  }
+  </script>
+
+  <!-- ===================== SCHEMA DADOS ESTRUTURADOS: FAQPage ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual a diferença entre o Cimento Queimado tradicional e o efeito marmorizado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O cimento queimado oferece um aspecto industrial fosco ou acetinado com manchas e tonalidades suaves que imitam o concreto urbano. Já o efeito marmorizado (como o Marmorato) conta com um acabamento de alto brilho espelhado e veios orgânicos idênticos aos da pedra de mármore natural polida."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O Grafiato pode ser aplicado tanto em áreas internas quanto externas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! O grafiato é uma das soluções mais resistentes para fachadas, muros e corredores externos devido à sua fórmula com grãos minerais hidro-repelentes que barram a infiltração de água da chuva. Também pode ser aplicado em paredes de destaque no interior de casas e escritórios."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Preciso lixar ou descascar a parede antes de aplicar o cimento queimado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. A superfície precisa estar perfeitamente plana, limpa e isenta de umidade, pó ou gordura. Aplicamos uma demão de fundo preparador e realizamos a correção de imperfeições com massa específica antes das demãos de efeito com desempenadeira de aço inox."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O efeito cimento queimado ou mármore pode ser limpo com pano úmido?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Quando finalizamos a aplicação com verniz protetor acrílico ou cera especial de polimento, a superfície ganha camada hidrofóbica e pode ser limpa suavemente com pano de microfibra úmido e detergente neutro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês realizam teste de cor e amostra na parede antes de iniciar o projeto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Entendemos a importância da estética e iluminação do ambiente. Disponibilizamos catálogos das melhores fabricantes e podemos realizar um teste de aplicação em uma pequena área para validação da cor e textura."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="assets/logo/logo-light.png" alt="Prime Pintura" class="logo-img" /></a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li class="has-dropdown">
+            <a href="index.html#servicos" class="active">
+              <span>Serviços</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+              <li><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+              <li><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+              <li><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#galeria">Fotos</a></li>
+          <li><a href="index.html#avaliacoes">Avaliações</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Abrir menu" @click="openMenu()" :aria-expanded="menuOpen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MENU MOBILE ===================== -->
+  <div class="mobile-menu" :class="{ 'is-open': menuOpen }">
+    <div class="mobile-menu-top">
+      <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <button type="button" class="mobile-menu-close" aria-label="Fechar menu" @click="closeMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+      </button>
+    </div>
+
+    <nav aria-label="Navegação mobile" @click="closeMenu()">
+      <ul>
+        <li><span class="mobile-menu-index">01</span><a href="index.html">Página Inicial</a></li>
+        <li><span class="mobile-menu-index">02</span><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+        <li><span class="mobile-menu-index">03</span><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+        <li><span class="mobile-menu-index">04</span><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+        <li><span class="mobile-menu-index">05</span><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
+        <li><span class="mobile-menu-index">06</span><a href="index.html#galeria">Fotos</a></li>
+        <li><span class="mobile-menu-index">07</span><a href="index.html#avaliacoes">Avaliações</a></li>
+        <li><span class="mobile-menu-index">08</span><a href="index.html#contato">Contato</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20texturas%20e%20efeitos." class="btn btn-primary btn-sm btn-icon" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+          <span>Solicite orçamento</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="conteudo">
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <div class="breadcrumbs">
+            <a href="index.html">Home</a> <span>/</span> <span>Texturas e Efeitos Especiais em SP</span>
+          </div>
+          <p class="eyebrow">Design de Superfícies & Sofisticação</p>
+          <h1 class="page-title">Aplicação de Cimento Queimado, Efeito Marmorato e Grafiato em SP</h1>
+          <p class="page-lead">Transforme paredes sem graça em verdadeiras obras de arte decorativas. Técnicas de alto padrão com desempenadeira de aço inox, brilho espelhado e durabilidade excepcional.</p>
+          
+          <div class="page-hero-actions">
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20cimento%20queimado%20ou%20efeitos%20em%20SP." class="btn btn-primary" target="_blank" rel="noopener">Pedir Orçamento de Efeitos</a>
+            <a href="#efeitos" class="btn btn-outline">Explorar efeitos</a>
+          </div>
+
+          <div class="badges-row">
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Cimento Queimado Fosco & Rústico
+            </span>
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Marmorato com Brilho Espelhado
+            </span>
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Grafiato Rústico Hidro-repelente
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 1: OS PRINCIPAIS EFEITOS ===================== -->
+    <section class="section" id="efeitos">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Catálogo de Efeitos</p>
+          <h2 class="section-title">Efeitos Especiais de Alto Padrão</h2>
+          <p class="section-lead">As texturas mais requisitadas por arquitetos e designers de interiores em São Paulo.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div>
+              <span class="service-index">01</span>
+              <h3>Cimento Queimado (Industrial)</h3>
+              <p>O queridinho da decoração contemporânea. Confere um ar rústico, moderno e elegante a salas de estar, quartos, escritórios e lavabos, com tonalidades que vão do cinza platina ao grafite profundo.</p>
+            </div>
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%20cimento%20queimado." class="service-link" target="_blank" rel="noopener">
+              <span>Orçar Cimento Queimado</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-index">02</span>
+              <h3>Marmorato Polido (Efeito Mármore)</h3>
+              <p>Inspirado no mármore italiano nobre. Recebe polimento manual com ceras nobres e politriz, resultando em um reflexo vitrificado e veios orgânicos de altíssima sofisticação.</p>
+            </div>
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%20efeito%20marmorato." class="service-link" target="_blank" rel="noopener">
+              <span>Orçar Efeito Marmorato</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+          <article class="service-card">
+            <div>
+              <span class="service-index">03</span>
+              <h3>Grafiato Rústico Riscar</h3>
+              <p>A solução definitiva para muros externos, fachadas e corredores. Sua trama com quartzo mineral disfarça ondulações da alvenaria e cria uma barreira impenetrável contra umidade e chuva.</p>
+            </div>
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20or%C3%A7amento%20para%20grafiato." class="service-link" target="_blank" rel="noopener">
+              <span>Orçar Grafiato</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 2: DIFERENCIAIS E MATERIAIS DE PONTA ===================== -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <p class="eyebrow">Mão de Obra Artesanal</p>
+            <h2 class="section-title">A Arte da Aplicação sem Emendas</h2>
+            <p class="section-lead">Efeitos decorativos exigem habilidade motora refinada e domínio absoluto da desempenadeira de cantos arredondados para não riscar a parede.</p>
+            
+            <ul class="about-checklist">
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Desempenadeiras Importadas em Inox com Bordas Chanfradas:</strong>
+                  <span>Garantia de manchamento orgânico sem marcas de quina na massa.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Produtos Originais Suvinil e Coral:</strong>
+                  <span>Massa de cimento queimado pronta de fábrica para estabilidade de cor e durabilidade contra desbotamento.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Camada Protetora Impermeabilizante:</strong>
+                  <span>Finalização com verniz PU ou cera especial para facilitar a limpeza e repelir água e gordura.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="about-image-wrap">
+            <picture><source srcset="assets/gallery/foto2.webp" type="image/webp" /><img src="assets/gallery/foto2.jpg" alt="Parede decorativa com textura efeito mármore aplicada pela Prime Pintura em São Paulo" loading="lazy" width="900" height="900" /></picture>
+            <div class="badge-experience">
+              <span class="num">100%</span>
+              <span class="lbl">Efeito artístico personalizado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 3: PROCESSO TÉCNICO DE TEXTURAS ===================== -->
+    <section class="section" id="processo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Rigor e Detalhe</p>
+          <h2 class="section-title">Como Aplicamos Cimento Queimado e Marmorato</h2>
+          <p class="section-lead">O passo a passo metódico para obter o efeito manchado ou espelhado dos sonhos.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step-card">
+            <span class="process-step-num">01</span>
+            <h3>Inspeção & Cura da Parede</h3>
+            <p>Verificação de umidade com medidor digital e correção prévia com selador acrílico ou fundo preparador de paredes.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">02</span>
+            <h3>Base Lisa em Massa Corrida</h3>
+            <p>Aplicação de massa corrida ou acrílica para atingir nível Q4 de planicidade (superfície 100% lisa, sem ondulações).</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">03</span>
+            <h3>Primeira Demão de Efeito</h3>
+            <p>Aplicação uniforme da massa de efeito especial em camadas finas para servir como fundo de ancoragem tonal.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">04</span>
+            <h3>Segunda e Terceira Demão (Manchamento)</h3>
+            <p>Movimentos curtos e aleatórios cruzados com desempenadeira de inox, revelando os contrastes claros e escuros característicos.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">05</span>
+            <h3>Polimento & Queimação Final</h3>
+            <p>Polimento com boina ou queimação a seco com a própria lâmina de inox, selando os microporos e ativando o toque acetinado/brilho.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 4: GALERIA DE EFEITOS ===================== -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Inspirações Reais</p>
+          <h2 class="section-title">Galeria de Texturas e Efeitos em SP</h2>
+          <p class="section-lead">Veja projetos recentes concluídos com cimento queimado, mármore e grafiato.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto2.jpg" data-caption="Parede decorativa marmorizada de alto padrão em sala de estar na Zona Leste SP">
+            <picture><source srcset="assets/gallery/foto2.webp" type="image/webp" /><img src="assets/gallery/foto2.jpg" alt="Parede decorativa marmorizada de alto padrão em sala de estar na Zona Leste SP" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Marmorato</span>
+              <strong>Mármore polido espelhado</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto9.jpg" data-caption="Parede de quarto com textura efeito cimento queimado cinza escuro em São Paulo">
+            <picture><source srcset="assets/gallery/foto9.webp" type="image/webp" /><img src="assets/gallery/foto9.jpg" alt="Parede de quarto com textura efeito cimento queimado cinza escuro em São Paulo" loading="lazy" width="756" height="1600" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Cimento Queimado</span>
+              <strong>Cinza urbano aveludado</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto3.jpg" data-caption="Sala de jantar com parede de destaque em cimento queimado no Tatuapé SP">
+            <picture><source srcset="assets/gallery/foto3.webp" type="image/webp" /><img src="assets/gallery/foto3.jpg" alt="Sala de jantar com parede de destaque em cimento queimado no Tatuapé SP" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Decoração</span>
+              <strong>Destaque em varanda gourmet</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto4.jpg" data-caption="Fachada de sobrado com textura impermeabilizante grafiato em São Paulo">
+            <picture><source srcset="assets/gallery/foto4.webp" type="image/webp" /><img src="assets/gallery/foto4.jpg" alt="Fachada de sobrado com textura impermeabilizante grafiato em São Paulo" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Grafiato</span>
+              <strong>Fachada rústica impermeável</strong>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 5: AVALIAÇÕES ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="reviews-head">
+          <div>
+            <p class="eyebrow">Opinião de Clientes</p>
+            <h2 class="section-title">O Que Dizem Sobre Nossas Texturas</h2>
+          </div>
+          <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="reviews-score" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <span class="num">5.0</span>
+            <div>
+              <span class="reviews-stars">★★★★★</span>
+              <div class="stat-label">18 avaliações no Google ↗</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="reviews-track" tabindex="0" aria-label="Avaliações de efeitos">
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>O cimento queimado da minha sala de jantar ficou simplesmente deslumbrante! Quem visita minha casa pergunta quem fez. Super recomendo a Prime Pintura.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Trabalho impecável, transformou o ambiente da casa — e com preço acessível. O efeito marmorato no lavabo parece pedra de verdade!</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Fizeram o grafiato no muro externo da minha casa na Penha. Ficou retinho, sem emenda aparente e aguentou as chuvas sem manchar nada.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 6: FAQ ACCORDION ===================== -->
+    
+    <!-- ===================== GRANDE SÃO PAULO ===================== -->
+    <section class="section grande-sp-section" aria-label="Área de atendimento Grande São Paulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Cobertura Regional</p>
+          <h2 class="section-title">Atendemos Toda a Grande São Paulo</h2>
+          <p class="section-lead">Da capital às cidades da região metropolitana — levamos qualidade, pontualidade e cuidado até você.</p>
+        </div>
+        <div class="bairros-grid" role="list">
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Paulo</strong><span>Capital e todos os bairros</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Guarulhos</strong><span>Região Norte</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Osasco</strong><span>Região Oeste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Santo André</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Bernardo do Campo</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Caetano do Sul</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mauá</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Diadema</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mogi das Cruzes</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Suzano</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Ribeirão Pires</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Itaquaquecetuba</strong><span>Região Leste</span></div>
+        </div>
+        <p style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:.9rem;">Não encontrou sua cidade? <a href="https://wa.me/5511913415626?text=Olá!%20Gostaria%20de%20verificar%20se%20vocês%20atendem%20minha%20cidade." target="_blank" rel="noopener" style="color:var(--accent);">Fale conosco no WhatsApp</a> — atendemos toda a região metropolitana.</p>
+      </div>
+    </section>
+    <section class="section faq-section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Tire Suas Dúvidas</p>
+          <h2 class="section-title">Perguntas sobre Cimento Queimado e Efeitos</h2>
+          <p class="section-lead">Esclarecimentos detalhados para escolher a textura perfeita para sua parede.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Qual a diferença entre o Cimento Queimado tradicional e o efeito marmorizado?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>O cimento queimado oferece um aspecto industrial fosco ou acetinado com manchas e tonalidades suaves que imitam o concreto urbano. Já o efeito marmorizado (como o Marmorato) conta com um acabamento de alto brilho espelhado e veios orgânicos idênticos aos da pedra de mármore natural polida.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O Grafiato pode ser aplicado tanto em áreas internas quanto externas?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Sim! O grafiato é uma das soluções mais resistentes para fachadas, muros e corredores externos devido à sua fórmula com grãos minerais hidro-repelentes que barram a infiltração de água da chuva. Também pode ser aplicado em paredes de destaque no interior de casas e escritórios.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Preciso lixar ou descascar a parede antes de aplicar o cimento queimado?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Sim. A superfície precisa estar perfeitamente plana, limpa e isenta de umidade, pó ou gordura. Aplicamos uma demão de fundo preparador e realizamos a correção de imperfeições com massa específica antes das demãos de efeito com desempenadeira de aço inox.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O efeito cimento queimado ou mármore pode ser limpo com pano úmido?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Sim. Quando finalizamos a aplicação com verniz protetor acrílico ou cera especial de polimento, a superfície ganha camada hidrofóbica e pode ser limpa suavemente com pano de microfibra úmido e detergente neutro.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Vocês realizam teste de cor e amostra na parede antes de iniciar o projeto?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Sim. Entendemos a importância da estética e iluminação do ambiente. Disponibilizamos catálogos das melhores fabricantes e podemos realizar um teste de aplicação em uma pequena área para validação da cor e textura.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="section" id="contato" style="text-align: center;">
+      <div class="container">
+        <div style="max-width: 680px; margin: 0 auto;">
+          <p class="eyebrow" style="justify-content:center;">Consultoria de Cores</p>
+          <h2 class="section-title">Qual efeito combina mais com o seu espaço?</h2>
+          <p class="section-lead">Envie uma foto da sua parede no WhatsApp e receba sugestões de texturas e paletas ideais.</p>
+          <div class="cta-actions">
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20efeito%20cimento%20queimado." class="btn btn-primary" target="_blank" rel="noopener">Falar com Aplicador no WhatsApp</a>
+            <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="btn btn-outline" target="_blank" rel="noopener">Perfil no Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><img src="assets/logo/logo.png" alt="Prime Pintura" class="logo-img" /></a>
+          <p>Texturas artísticas e efeitos decorativos em São Paulo. Especialistas em cimento queimado, mármore e grafiato.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="pintura-residencial-sp.html">Pintura Residencial SP</a></li>
+            <li><a href="pintura-comercial-sp.html">Pintura Comercial SP</a></li>
+            <li><a href="texturas-e-efeitos.html">Texturas e Efeitos Especiais</a></li>
+            <li><a href="pintor-zona-leste-sp.html">Pintor na Zona Leste SP</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato & Local</h4>
+          <ul>
+            <li><address>Rua Evans, Vila Esperança<br />São Paulo - SP, 03648-020</address></li>
+            <li><a href="tel:+5511913415626">(11) 91341-5626</a></li>
+            <li><a href="https://wa.me/5511913415626" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="current-year"></span> Prime Pintura. Todos os direitos reservados.</span>
+        <span>Texturas e Efeitos Decorativos em São Paulo.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== BOTÕES FLUTUANTES ===================== -->
+  <div class="floating-actions">
+    <a class="fab-whatsapp" href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20de%20texturas%20e%20efeitos." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+    </a>
+    <a class="fab-instagram" href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener" aria-label="Ver Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    </a>
+  </div>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de foto ampliada" hidden>
+    <button type="button" class="lightbox-close" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5 8 12l7 7"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="Próxima foto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <figure>
+      <img id="lightbox-img" src="" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="flandao/flandao-widget.js" defer></script>
+</body>
+</html>
+
+
+

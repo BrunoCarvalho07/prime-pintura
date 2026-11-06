@@ -68,6 +68,16 @@
   touch-action: manipulation;
 }
 
+/* Quando inserido dentro do container .floating-actions junto aos botões de WhatsApp e Instagram */
+.floating-actions .flandao-fab {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: 52px;
+  height: 52px;
+  z-index: auto;
+}
+
 .flandao-fab:hover {
   transform: scale(1.08);
   box-shadow: 0 10px 28px -2px rgba(232, 100, 28, 0.6), 0 6px 16px rgba(0, 0, 0, 0.6);
@@ -456,6 +466,11 @@
   :root {
     --flandao-fab-bottom: calc(clamp(0.9rem, 3vw, 1.6rem) + 115px);
     --flandao-fab-size: 50px;
+  }
+
+  .floating-actions .flandao-fab {
+    width: 46px;
+    height: 46px;
   }
 
   .flandao-panel {

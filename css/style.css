@@ -73,6 +73,11 @@
   --space-xl: 7rem;
 
   --radius: 10px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --header-height: 80px;
+  --surface-card: #161619;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -86,6 +91,7 @@
   --bg-alt: #f2ede4;
   --surface: #ffffff;
   --surface-2: #f2ede4;
+  --surface-card: #ffffff;
   --line: rgba(23, 19, 15, 0.10);
   --line-strong: rgba(23, 19, 15, 0.16);
 
@@ -1339,6 +1345,401 @@ button.gallery-item:focus-visible {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+/* ---------- 16. SUBPÁGINAS & COMPONENTES SEO (FAQ, BREADCRUMB, STEPPER) ---------- */
+.page-hero {
+  padding-top: calc(var(--header-height) + var(--space-xl));
+  padding-bottom: var(--space-xl);
+  background: radial-gradient(circle at 80% 20%, rgba(232, 100, 28, 0.12) 0%, transparent 60%),
+              radial-gradient(circle at 10% 90%, rgba(242, 183, 5, 0.08) 0%, transparent 50%),
+              var(--bg);
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.page-hero-inner {
+  max-width: 860px;
+}
+.page-hero .breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: var(--space-sm);
+}
+.page-hero .breadcrumbs a {
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.page-hero .breadcrumbs a:hover {
+  color: var(--orange-light);
+}
+.page-hero .page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+  color: var(--text);
+}
+.page-hero .page-lead {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-md);
+}
+.page-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: var(--space-md);
+}
+.badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.badge-item svg {
+  width: 16px;
+  height: 16px;
+  color: var(--orange-light);
+}
+
+/* Timeline do Processo Técnico */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: var(--space-lg);
+}
+.process-step-card {
+  background: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.process-step-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--orange);
+}
+.process-step-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--orange-light);
+  margin-bottom: 0.75rem;
+}
+.process-step-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+.process-step-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* FAQ Acordeon Semântico */
+.faq-section {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.faq-list {
+  max-width: 860px;
+  margin: var(--space-lg) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.faq-item {
+  background: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.25s ease;
+}
+.faq-item[open] {
+  border-color: var(--orange);
+}
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  list-style: none;
+  user-select: none;
+}
+.faq-question::-webkit-details-marker {
+  display: none;
+}
+.faq-chevron {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+  color: var(--orange-light);
+  flex-shrink: 0;
+  margin-left: 1rem;
+}
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+.faq-answer {
+  padding: 0 1.5rem 1.35rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.faq-answer p + p {
+  margin-top: 0.75rem;
+}
+
+/* SEO Cards e Listas Locais */
+.bairros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-top: var(--space-md);
+}
+.bairro-card {
+  background: var(--surface-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.bairro-card:hover {
+  border-color: var(--orange-light);
+  transform: translateY(-2px);
+}
+.bairro-card strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.bairro-card span:not(.bairro-icon) {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.bairro-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.bairro-card svg {
+  width: 18px;
+  height: 18px;
+  color: var(--orange-light);
+  flex-shrink: 0;
+}
+.grande-sp-section {
+  background: var(--surface);
+}
+
+/* Dropdown no Menu Principal */
+.has-dropdown {
+  position: relative;
+}
+.has-dropdown > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.has-dropdown > a svg {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.25s ease;
+}
+.has-dropdown:hover > a svg {
+  transform: rotate(180deg);
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(20, 20, 24, 0.96);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.5rem;
+  min-width: 230px;
+  display: flex;
+  flex-direction: column !important;
+  gap: 0.2rem !important;
+  box-shadow: 0 16px 36px -8px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.06);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease), visibility 0.22s ease;
+  z-index: 120;
+}
+.has-dropdown:hover .dropdown-menu,
+.has-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown-menu li {
+  width: 100%;
+}
+.dropdown-menu a {
+  display: block;
+  padding: 0.6rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body) !important;
+  font-size: 0.84rem !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  font-weight: 600;
+  color: var(--media-text-muted) !important;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover {
+  background: rgba(232, 100, 28, 0.16);
+  color: #fff !important;
+  transform: translateX(3px);
+}
+
+/* Links dentro do card de serviços */
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--orange-light);
+  font-weight: 700;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+.service-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+.service-card:hover .service-link {
+  color: #fff;
+}
+.service-card:hover .service-link svg {
+  transform: translateX(4px);
+}
+
+/* Grid de Destaque no Quem Somos / Diferenciais da Subpágina */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 18px 40px -12px rgba(0,0,0,0.6);
+}
+.about-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.about-image-wrap:hover img {
+  transform: scale(1.04);
+}
+.badge-experience {
+  position: absolute;
+  left: var(--space-sm);
+  bottom: var(--space-sm);
+  z-index: 2;
+  background: rgba(14, 14, 16, 0.88);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.badge-experience .num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--yellow-light);
+  line-height: 1;
+}
+.badge-experience .lbl {
+  font-size: 0.78rem;
+  line-height: 1.3;
+  color: var(--media-text);
+  font-weight: 600;
+  max-width: 15ch;
+}
+.check-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--paint-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  color: #17130c;
+}
+.check-icon svg {
+  width: 14px;
+  height: 14px;
+}
+.about-checklist li strong {
+  display: block;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+  font-size: 0.96rem;
+}
+.about-checklist li span {
+  font-size: 0.88rem;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-image-wrap {
+    order: -1;
+    max-height: 380px;
+  }
 }
 
 /* Trava o scroll do body quando o menu mobile está aberto */

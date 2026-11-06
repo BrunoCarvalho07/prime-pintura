@@ -1,0 +1,681 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" x-data="ppApp()" :data-theme="theme" @keydown.escape.window="closeMenu()">
+<head>
+  <meta charset="UTF-8" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CQV42GDEM2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-CQV42GDEM2');
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <script>
+    (function () {
+      var stored = localStorage.getItem("pp-theme");
+      var prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+      document.documentElement.setAttribute("data-theme", stored || (prefersLight ? "light" : "dark"));
+    })();
+
+    function ppApp() {
+      return {
+        theme: document.documentElement.getAttribute("data-theme"),
+        menuOpen: false,
+        toggleTheme() {
+          this.theme = this.theme === "light" ? "dark" : "light";
+          localStorage.setItem("pp-theme", this.theme);
+        },
+        openMenu() {
+          this.menuOpen = true;
+          document.body.classList.add("menu-open");
+        },
+        closeMenu() {
+          this.menuOpen = false;
+          document.body.classList.remove("menu-open");
+        },
+      };
+    }
+  </script>
+  <script defer src="js/vendor/alpine-3.14.1.min.js"></script>
+
+  <!-- ===================== SEO METADATA ===================== -->
+  <title>Pintor na Zona Leste SP | Prime Pintura</title>
+  <meta name="description" content="Pintor na Zona Leste SP: Vila Esperança, Penha, Tatuapé e Mooca. Empresa de pintura com nota 5 no Google e orçamento rápido no WhatsApp!" />
+  <meta name="keywords" content="pintor zona leste sp, pintor vila esperança sp, pintor penha sp, pintor tatuapé sp, pintor mooca sp, empresa de pintura zona leste" />
+  <meta name="author" content="Prime Pintura" />
+  <link rel="canonical" href="https://pinturaprime.com.br/pintor-zona-leste-sp" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Prime Pintura" />
+  <meta property="og:title" content="Pintor na Zona Leste SP | Vila Esperança, Penha, Tatuapé e Mooca" />
+  <meta property="og:description" content="Serviço profissional de pintura na Zona Leste de São Paulo. Sede na Vila Esperança, atendimento rápido em toda a região com acabamento de alto padrão." />
+  <meta property="og:url" content="https://pinturaprime.com.br/pintor-zona-leste-sp" />
+  <meta property="og:image" content="https://pinturaprime.com.br/assets/img/og-cover.jpg" />
+
+  <meta name="theme-color" content="#0e0e10" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="flandao/flandao-widget.css" />
+  <link rel="icon" type="image/jpeg" href="assets/logo/loading-logo.jpg" sizes="520x520" />
+  <link rel="apple-touch-icon" href="assets/logo/loading-logo.jpg" />
+
+  <!-- ===================== SCHEMA DADOS ESTRUTURADOS: LocalBusiness ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HomeAndConstructionBusiness",
+    "name": "Prime Pintura - Pintor na Zona Leste de São Paulo",
+    "image": "https://pinturaprime.com.br/assets/img/og-cover.jpg",
+    "url": "https://pinturaprime.com.br/pintor-zona-leste-sp",
+    "telephone": "+5511913415626",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Evans",
+      "addressLocality": "Vila Esperança, São Paulo",
+      "addressRegion": "SP",
+      "postalCode": "03648-020",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -23.5269036,
+      "longitude": -46.5252139
+    },
+    "areaServed": [
+      { "@type": "Place", "name": "Vila Esperança, São Paulo" },
+      { "@type": "Place", "name": "Penha, São Paulo" },
+      { "@type": "Place", "name": "Tatuapé, São Paulo" },
+      { "@type": "Place", "name": "Mooca, São Paulo" },
+      { "@type": "Place", "name": "Vila Matilde, São Paulo" },
+      { "@type": "Place", "name": "Vila Guilhermina, São Paulo" },
+      { "@type": "Place", "name": "Anália Franco, São Paulo" },
+      { "@type": "City", "name": "São Paulo" }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "18"
+    }
+  }
+  </script>
+
+  <!-- ===================== SCHEMA DADOS ESTRUTURADOS: FAQPage ===================== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual é a base da Prime Pintura na Zona Leste de São Paulo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nossa base operacional fica estrategicamente situada na Rua Evans, na Vila Esperança (Zona Leste de São Paulo - SP, CEP 03648-020). Essa localização nos permite deslocamento ágil para bairros vizinhos como Penha, Tatuapé, Mooca, Vila Matilde, Guilhermina e Anália Franco."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês cobram taxa para fazer orçamento presencial na Zona Leste?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não cobramos nenhuma taxa para orçamentos na Zona Leste de São Paulo. Você pode nos enviar vídeos e fotos pelo WhatsApp para uma cotação preliminar imediata ou agendar uma visita técnica gratuita no seu imóvel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A Prime Pintura atende condomínios fechados e edifícios no Tatuapé e Mooca?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! Temos ampla experiência com as normas de condomínios residenciais e comerciais verticais, cumprindo rigorosamente os horários de barulho permitidos, credenciamento na portaria e proteção de elevadores de serviço e áreas comuns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês também realizam pintura de portas, janelas e portões de ferro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Com certeza. Além da pintura de alvenaria e gesso, realizamos o lixamento mecânico, tratamento de ferrugem com zarcão/fundo fosfatizante e aplicação de esmalte sintético em portões, grades, portas de madeira e esquadrias de ferro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quais as formas de pagamento aceitas pela Prime Pintura?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Facilitamos o pagamento com opções via Pix, transferência bancária ou parcelamento no cartão de crédito conforme o cronograma de etapas da obra acertado em contrato."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo"><img src="assets/logo/logo-light.png" alt="Prime Pintura" class="logo-img" /></a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li class="has-dropdown">
+            <a href="index.html#servicos" class="active">
+              <span>Serviços</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+              <li><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+              <li><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+              <li><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
+            </ul>
+          </li>
+          <li><a href="index.html#galeria">Fotos</a></li>
+          <li><a href="index.html#avaliacoes">Avaliações</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+        </button>
+        <button class="nav-toggle" aria-label="Abrir menu" @click="openMenu()" :aria-expanded="menuOpen">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== MENU MOBILE ===================== -->
+  <div class="mobile-menu" :class="{ 'is-open': menuOpen }">
+    <div class="mobile-menu-top">
+      <button class="theme-toggle" aria-label="Alternar tema claro/escuro" @click="toggleTheme()">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+      <button type="button" class="mobile-menu-close" aria-label="Fechar menu" @click="closeMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+      </button>
+    </div>
+
+    <nav aria-label="Navegação mobile" @click="closeMenu()">
+      <ul>
+        <li><span class="mobile-menu-index">01</span><a href="index.html">Página Inicial</a></li>
+        <li><span class="mobile-menu-index">02</span><a href="pintura-residencial-sp.html">Pintura Residencial</a></li>
+        <li><span class="mobile-menu-index">03</span><a href="pintura-comercial-sp.html">Pintura Comercial</a></li>
+        <li><span class="mobile-menu-index">04</span><a href="texturas-e-efeitos.html">Texturas & Efeitos</a></li>
+        <li><span class="mobile-menu-index">05</span><a href="pintor-zona-leste-sp.html">Pintor Zona Leste</a></li>
+        <li><span class="mobile-menu-index">06</span><a href="index.html#galeria">Fotos</a></li>
+        <li><span class="mobile-menu-index">07</span><a href="index.html#avaliacoes">Avaliações</a></li>
+        <li><span class="mobile-menu-index">08</span><a href="index.html#contato">Contato</a></li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Procuro%20pintor%20na%20Zona%20Leste%20de%20SP." class="btn btn-primary btn-sm btn-icon" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+          <span>Solicite orçamento</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main id="conteudo">
+
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner">
+          <div class="breadcrumbs">
+            <a href="index.html">Home</a> <span>/</span> <span>Pintor na Zona Leste SP</span>
+          </div>
+          <p class="eyebrow">Atendimento Regional Ágil</p>
+          <h1 class="page-title">Pintor Profissional na Zona Leste de São Paulo com Nota Máxima no Google</h1>
+          <p class="page-lead">Sediados na Vila Esperança, atendemos toda a Zona Leste com agilidade e preço justo: Penha, Tatuapé, Mooca, Vila Matilde e Guilhermina. Compromisso com limpeza, proteção e prazo.</p>
+          
+          <div class="page-hero-actions">
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Procuro%20pintor%20na%20Zona%20Leste%20de%20SP." class="btn btn-primary" target="_blank" rel="noopener">Orçamento sem Compromisso</a>
+            <a href="#bairros" class="btn btn-outline">Bairros atendidos</a>
+          </div>
+
+          <div class="badges-row">
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Sede na Vila Esperança - SP
+            </span>
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              5.0 Estrelas no Google Maps
+            </span>
+            <span class="badge-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+              Visita Técnica Rápida
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 1: BAIRROS ATENDIDOS NA ZONA LESTE ===================== -->
+    <section class="section" id="bairros">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Cobertura Local</p>
+          <h2 class="section-title">Bairros Atendidos na Zona Leste de SP</h2>
+          <p class="section-lead">Por estarmos localizados no coração da ZL, chegamos rapidamente até você para vistorias e orçamentos pontuais.</p>
+        </div>
+
+        <div class="bairros-grid">
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Vila Esperança (Nossa Base)</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Penha de França</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Tatuapé</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Mooca</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Jardim Anália Franco</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Vila Matilde</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Vila Guilhermina</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Artur Alvim</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Belém & Bresser</span>
+          </div>
+          <div class="bairro-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Carrão & Aricanduva</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 2: VANTAGENS DO PINTOR LOCAL ===================== -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <p class="eyebrow">Proximidade & Confiança</p>
+            <h2 class="section-title">A Vantagem de Contratar uma Empresa da Sua Região</h2>
+            <p class="section-lead">Chega de prestadores que cobram deslocamento abusivo ou desmarcam visitas por estarem do outro lado da cidade.</p>
+            
+            <ul class="about-checklist">
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Pontualidade Britânica:</strong>
+                  <span>Sem atrasos com o trânsito da Radial Leste ou Marginal Tietê.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Conhecimento das Tinturarias Locais:</strong>
+                  <span>Parceria com fornecedores da Zona Leste para agilidade na entrega de tintas e materiais complementares com desconto.</span>
+                </div>
+              </li>
+              <li>
+                <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                <div>
+                  <strong>Atendimento Humanizado e Transparente:</strong>
+                  <span>Conversa direta com os proprietários e acompanhamento diário da evolução dos serviços.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="about-image-wrap">
+            <picture><source srcset="assets/gallery/foto10.webp" type="image/webp" /><img src="assets/gallery/foto10.jpg" alt="Pintor profissional trabalhando em fachada residencial na Zona Leste de São Paulo" loading="lazy" width="720" height="1282" /></picture>
+            <div class="badge-experience">
+              <span class="num">18+</span>
+              <span class="lbl">Avaliações 5 estrelas reais</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 3: PROCESSO TÉCNICO COMPLETO ===================== -->
+    <section class="section" id="processo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Etapas Transparentes</p>
+          <h2 class="section-title">Nosso Roteiro Técnico de Pintura</h2>
+          <p class="section-lead">Garantimos durabilidade superior preparando cada camada com rigor antes de abrir a primeira lata de tinta.</p>
+        </div>
+
+        <div class="process-grid">
+          <div class="process-step-card">
+            <span class="process-step-num">01</span>
+            <h3>Isolamento & Proteção Fina</h3>
+            <p>Forração total do piso com papel kraft espesso, proteção de esquadrias e isolamento de móveis com plástico de alta resistência.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">02</span>
+            <h3>Raspagem & Remoção de Mofo</h3>
+            <p>Remoção de camadas descascadas, lavagem antifúngica contra bolor em áreas úmidas e aplicação de fundo preparador.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">03</span>
+            <h3>Tratamento de Fissuras & Trincas</h3>
+            <p>Abertura de trincas em formato "V", preenchimento com elastômero acrílico flexível e reforço com fita telada para evitar que voltem.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">04</span>
+            <h3>Aplicação de Massa & Lixamento</h3>
+            <p>Aplicação de massa corrida/acrílica em sucessivas camadas finas e lixamento técnico com controle de iluminação lateral.</p>
+          </div>
+          <div class="process-step-card">
+            <span class="process-step-num">05</span>
+            <h3>Pintura e Limpeza Geral</h3>
+            <p>Aplicação de 2 a 3 demãos de tinta lavável de alta cobertura, desmascaramento cuidadoso das fitas e faxina fina pós-obra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 4: GALERIA LOCAL COM PALAVRAS-CHAVE ===================== -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Obras Locais</p>
+          <h2 class="section-title">Trabalhos Realizados na Zona Leste de SP</h2>
+          <p class="section-lead">Veja projetos recentes entregues na Vila Esperança, Penha, Tatuapé e Mooca.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto1.jpg" data-caption="Pintura residencial em quarto de apartamento na Penha São Paulo">
+            <picture><source srcset="assets/gallery/foto1.webp" type="image/webp" /><img src="assets/gallery/foto1.jpg" alt="Pintura residencial em quarto de apartamento na Penha São Paulo" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Penha</span>
+              <strong>Apartamento acetinado</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto3.jpg" data-caption="Pintura de sala de estar moderna em condomínio no Tatuapé São Paulo">
+            <picture><source srcset="assets/gallery/foto3.webp" type="image/webp" /><img src="assets/gallery/foto3.jpg" alt="Pintura de sala de estar moderna em condomínio no Tatuapé São Paulo" loading="lazy" width="900" height="900" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Tatuapé</span>
+              <strong>Sala moderna integrada</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto7.jpg" data-caption="Pintura de sobrado residencial na Vila Esperança Zona Leste de São Paulo">
+            <picture><source srcset="assets/gallery/foto7.webp" type="image/webp" /><img src="assets/gallery/foto7.jpg" alt="Pintura de sobrado residencial na Vila Esperança Zona Leste de São Paulo" loading="lazy" width="720" height="1282" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Vila Esperança</span>
+              <strong>Sobrado impermeabilizado</strong>
+            </span>
+          </button>
+
+          <button type="button" class="gallery-item" data-lightbox="assets/gallery/foto11.jpg" data-caption="Pintura de fachada geminada na Mooca São Paulo pela Prime Pintura">
+            <picture><source srcset="assets/gallery/foto11.webp" type="image/webp" /><img src="assets/gallery/foto11.jpg" alt="Pintura de fachada geminada na Mooca São Paulo pela Prime Pintura" loading="lazy" width="721" height="1600" /></picture>
+            <span class="gallery-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21M10.5 7.5v6M7.5 10.5h6"/></svg></span>
+            <span class="gallery-caption">
+              <span class="eyebrow">Mooca</span>
+              <strong>Fachada geminada cinza</strong>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 5: AVALIAÇÕES LOCAIS DO GOOGLE ===================== -->
+    <section class="section">
+      <div class="container">
+        <div class="reviews-head">
+          <div>
+            <p class="eyebrow">Reconhecimento no Google</p>
+            <h2 class="section-title">Avaliações dos Vizinhos da Zona Leste</h2>
+          </div>
+          <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="reviews-score" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <span class="num">5.0</span>
+            <div>
+              <span class="reviews-stars">★★★★★</span>
+              <div class="stat-label">18 avaliações no Google ↗</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="reviews-track" tabindex="0" aria-label="Avaliações na Zona Leste">
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Excelente pintor aqui na Vila Esperança! Pintou meu sobrado todo, foi super rápido e não deixou nenhuma mancha no chão.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Moro no Tatuapé e precisava de um pintor de confiança para o apartamento. A Prime Pintura fez um trabalho impecável com preço muito honesto.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+          <article class="review-card">
+            <span class="reviews-stars">★★★★★</span>
+            <p>Super atenciosos e caprichosos. Pintaram minha loja na Penha durante a noite e no dia seguinte estava tudo perfeito para abrir as portas.</p>
+            <div class="review-author">
+              <span class="review-avatar">G</span>
+              <span>Avaliação verificada no Google</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SEÇÃO 6: FAQ ACCORDION ===================== -->
+    
+    <!-- ===================== GRANDE SÃO PAULO ===================== -->
+    <section class="section grande-sp-section" aria-label="Área de atendimento Grande São Paulo">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Cobertura Regional</p>
+          <h2 class="section-title">Atendemos Toda a Grande São Paulo</h2>
+          <p class="section-lead">Da capital às cidades da região metropolitana — levamos qualidade, pontualidade e cuidado até você.</p>
+        </div>
+        <div class="bairros-grid" role="list">
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Paulo</strong><span>Capital e todos os bairros</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Guarulhos</strong><span>Região Norte</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Osasco</strong><span>Região Oeste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Santo André</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Bernardo do Campo</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>São Caetano do Sul</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mauá</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Diadema</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Mogi das Cruzes</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Suzano</strong><span>Região Leste</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Ribeirão Pires</strong><span>Grande ABC</span></div>
+          <div class="bairro-card" role="listitem"><span class="bairro-icon">📍</span><strong>Itaquaquecetuba</strong><span>Região Leste</span></div>
+        </div>
+        <p style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:.9rem;">Não encontrou sua cidade? <a href="https://wa.me/5511913415626?text=Olá!%20Gostaria%20de%20verificar%20se%20vocês%20atendem%20minha%20cidade." target="_blank" rel="noopener" style="color:var(--accent);">Fale conosco no WhatsApp</a> — atendemos toda a região metropolitana.</p>
+      </div>
+    </section>
+    <section class="section faq-section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Atendimento Regional</p>
+          <h2 class="section-title">Perguntas Frequentes na Zona Leste</h2>
+          <p class="section-lead">Dúvidas comuns sobre como funciona nosso atendimento em SP.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Qual é a base da Prime Pintura na Zona Leste de São Paulo?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Nossa base operacional fica estrategicamente situada na Rua Evans, na Vila Esperança (Zona Leste de São Paulo - SP, CEP 03648-020). Essa localização nos permite deslocamento ágil para bairros vizinhos como Penha, Tatuapé, Mooca, Vila Matilde, Guilhermina e Anália Franco.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Vocês cobram taxa para fazer orçamento presencial na Zona Leste?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Não cobramos nenhuma taxa para orçamentos na Zona Leste de São Paulo. Você pode nos enviar vídeos e fotos pelo WhatsApp para uma cotação preliminar imediata ou agendar uma visita técnica gratuita no seu imóvel.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>A Prime Pintura atende condomínios fechados e edifícios no Tatuapé e Mooca?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Sim! Temos ampla experiência com as normas de condomínios residenciais e comerciais verticais, cumprindo rigorosamente os horários de barulho permitidos, credenciamento na portaria e proteção de elevadores de serviço e áreas comuns.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Vocês também realizam pintura de portas, janelas e portões de ferro?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Com certeza. Além da pintura de alvenaria e gesso, realizamos o lixamento mecânico, tratamento de ferrugem com zarcão/fundo fosfatizante e aplicação de esmalte sintético em portões, grades, portas de madeira e esquadrias de ferro.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Quais as formas de pagamento aceitas pela Prime Pintura?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>Facilitamos o pagamento com opções via Pix, transferência bancária ou parcelamento no cartão de crédito conforme o cronograma de etapas da obra acertado em contrato.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CTA FINAL ===================== -->
+    <section class="section" id="contato" style="text-align: center;">
+      <div class="container">
+        <div style="max-width: 680px; margin: 0 auto;">
+          <p class="eyebrow" style="justify-content:center;">Atendimento na Zona Leste</p>
+          <h2 class="section-title">Chame a Prime Pintura para seu imóvel na ZL!</h2>
+          <p class="section-lead">Orçamento rápido, transparente e com visita técnica sem custo na Zona Leste de São Paulo.</p>
+          <div class="cta-actions">
+            <a href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Procuro%20pintor%20na%20Zona%20Leste%20de%20SP." class="btn btn-primary" target="_blank" rel="noopener">Chamar no WhatsApp Agora</a>
+            <a href="https://maps.app.goo.gl/7nX3mmwSvgL7EyBx7" class="btn btn-outline" target="_blank" rel="noopener">Ver no Google Maps</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== RODAPÉ ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><img src="assets/logo/logo.png" alt="Prime Pintura" class="logo-img" /></a>
+          <p>Sua empresa de pintura na Zona Leste de São Paulo. Sede na Vila Esperança, atendendo Penha, Tatuapé, Mooca e toda a capital.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="index.html">Página Inicial</a></li>
+            <li><a href="pintura-residencial-sp.html">Pintura Residencial SP</a></li>
+            <li><a href="pintura-comercial-sp.html">Pintura Comercial SP</a></li>
+            <li><a href="texturas-e-efeitos.html">Texturas e Efeitos Especiais</a></li>
+            <li><a href="pintor-zona-leste-sp.html">Pintor na Zona Leste SP</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Nossa Base na ZL</h4>
+          <ul>
+            <li><address>Rua Evans, Vila Esperança<br />São Paulo - SP, 03648-020</address></li>
+            <li><a href="tel:+5511913415626">(11) 91341-5626</a></li>
+            <li><a href="https://wa.me/5511913415626" target="_blank" rel="noopener">WhatsApp</a></li>
+            <li><a href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="current-year"></span> Prime Pintura. Todos os direitos reservados.</span>
+        <span>Pintor na Zona Leste de São Paulo - Vila Esperança, Penha, Tatuapé e Mooca.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== BOTÕES FLUTUANTES ===================== -->
+  <div class="floating-actions">
+    <a class="fab-whatsapp" href="https://wa.me/5511913415626?text=Ol%C3%A1!%20Procuro%20pintor%20na%20Zona%20Leste%20de%20SP." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.39 1.3-1.92 1.36-.49.06-1.1.09-1.78-.11a16.3 16.3 0 0 1-1.6-.6c-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.15-1.53-1.15-2.92 0-1.39.73-2.07.99-2.35.26-.28.57-.35.76-.35h.55c.18 0 .42-.07.65.5.24.58.82 1.99.89 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.89 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.28.35-.23.6-.14.24.09 1.55.73 1.82.86.26.14.44.2.5.32.07.12.07.68-.17 1.36Z"/></svg>
+    </a>
+    <a class="fab-instagram" href="https://www.instagram.com/primepintura12" target="_blank" rel="noopener" aria-label="Ver Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    </a>
+  </div>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de foto ampliada" hidden>
+    <button type="button" class="lightbox-close" aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5 5 19"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-prev" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5 8 12l7 7"/></svg>
+    </button>
+    <button type="button" class="lightbox-nav lightbox-next" aria-label="Próxima foto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+    <figure>
+      <img id="lightbox-img" src="" alt="" />
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="flandao/flandao-widget.js" defer></script>
+</body>
+</html>
+
+
+

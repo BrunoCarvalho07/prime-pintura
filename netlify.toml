@@ -5,3 +5,23 @@
 [dev]
   port = 8888
   publish = "."
+
+[[redirects]]
+  from = "/pintura-residencial-sp"
+  to = "/pintura-residencial-sp.html"
+  status = 200
+
+[[redirects]]
+  from = "/pintura-comercial-sp"
+  to = "/pintura-comercial-sp.html"
+  status = 200
+
+[[redirects]]
+  from = "/texturas-e-efeitos"
+  to = "/texturas-e-efeitos.html"
+  status = 200
+
+[[redirects]]
+  from = "/pintor-zona-leste-sp"
+  to = "/pintor-zona-leste-sp.html"
+  status = 200

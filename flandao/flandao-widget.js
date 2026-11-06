@@ -343,7 +343,16 @@
 
     containerEl.appendChild(fabEl);
     containerEl.appendChild(panelEl);
-    document.body.appendChild(containerEl);
+
+    // Se existir o container .floating-actions (WhatsApp e Instagram), insere o botão do chatbot
+    // no fluxo logo abaixo desses canais, evitando sobreposição e garantindo prioridade aos canais diretos.
+    const floatingActions = document.querySelector('.floating-actions');
+    if (floatingActions) {
+      floatingActions.appendChild(fabEl);
+      document.body.appendChild(containerEl);
+    } else {
+      document.body.appendChild(containerEl);
+    }
 
     // Carrega histórico ou inicia boas-vindas
     const saved = loadHistory();
