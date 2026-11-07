@@ -1280,16 +1280,30 @@ button.gallery-item:focus-visible {
 .mobile-menu {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
   z-index: 105;
   background: var(--menu-overlay-bg);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   display: flex;
   flex-direction: column;
   padding: var(--space-md) clamp(1.25rem, 8vw, 3rem) var(--space-lg);
   transform: translateY(-100%);
-  transition: transform 0.45s var(--ease);
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+  transition: transform 0.45s var(--ease), visibility 0.45s var(--ease);
 }
-.mobile-menu.is-open { transform: translateY(0); }
+.mobile-menu.is-open {
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
 
 /* Barra do topo dentro do overlay: tema à esquerda, fechar à direita —
    mesmo padrão de agrupamento usado no header principal. */
@@ -1297,7 +1311,8 @@ button.gallery-item:focus-visible {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
+  flex-shrink: 0;
 }
 .mobile-menu-close {
   width: 44px; height: 44px;
@@ -1311,7 +1326,13 @@ button.gallery-item:focus-visible {
 .mobile-menu-close svg { width: 18px; height: 18px; }
 .mobile-menu-top .theme-toggle { border: 1px solid var(--line-strong); }
 
-.mobile-menu nav { display: flex; flex-direction: column; justify-content: center; flex: 1; }
+.mobile-menu nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-height: min-content;
+  margin: auto 0;
+}
 
 /* Links organizados: número + texto, com divisórias sutis entre eles —
    substitui o bloco de texto grande e "solto" que tinha antes. */
@@ -1323,7 +1344,7 @@ button.gallery-item:focus-visible {
   display: flex;
   align-items: baseline;
   gap: 0.9rem;
-  padding-block: 0.85rem;
+  padding-block: clamp(0.45rem, 1.8vh, 0.85rem);
   border-bottom: 1px solid var(--line);
 }
 .mobile-menu li:first-child { border-top: 1px solid var(--line); }
@@ -1335,7 +1356,7 @@ button.gallery-item:focus-visible {
 }
 .mobile-menu ul a {
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 6vw, 1.8rem);
+  font-size: clamp(1.15rem, 4.5vh, 1.8rem);
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
@@ -1345,6 +1366,8 @@ button.gallery-item:focus-visible {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-shrink: 0;
+  padding-bottom: var(--space-sm);
 }
 
 /* ---------- 16. SUBPÁGINAS & COMPONENTES SEO (FAQ, BREADCRUMB, STEPPER) ---------- */
